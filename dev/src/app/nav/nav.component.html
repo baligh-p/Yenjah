@@ -1,0 +1,63 @@
+<div class="navBar b-z-10 b-overflow-hidden b-transition-all b-delay-200 b-duration-300  b-w-full b-fixed
+ b-top-0 b-left-0 b-flex b-items-center b-justify-between b-shadow-md b-h-20 2xl:b-h-28 2xl:b-shadow-lg lg:b-h-16
+  b-bg-white">
+  <!--part 1-->
+    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-full xl:b-w-3/12">
+        <div class="lg:b-hidden b-z-40">
+            <div (click)="handleBurgerClick()" [ngClass]="showBurger ? 'active' : 'Notactive' " id="burger" class="burger b-h-20
+             b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
+        </div>
+        <h1 class="b-text-3xl b-w-full b-mr-20 lg:b-mr-0 lg:b-w-auto b-text-center lg:b-text-left
+            2xl:b-text-6xl b-text-indigo-600 b-self-center b-font-title b-tracking-wider b-cursor-pointer">Yenjah?<span
+            class="b-text-md b-text-red-500">.tn</span>
+        </h1>
+    </div>
+    <!--part 2-->
+    <div class="b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap
+        lg:b-w-5/12 b-z-30 b-bg-white xl:b-w-5/12 b-hidden lg:b-flex b-flex-col lg:b-flex-row b-fixed
+        b-left-0 b-top-0 b-w-0 b-overflow-hidden lg:b-static b-h-full b-items-center b-justify-center lg:b-justify-around 
+        b-font-body 2xl:b-text-2xl b-font-semibold b-text-neutral-600">
+        <div>
+            <a routerLink="/" class="b-hover:text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+        </div>
+        <div>
+            <a routerLink="TopProducts" class="b-hover:text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product</a>
+        </div>
+        <div>
+            <a routerLink="Myposts" class="b-hover:text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+        </div>
+        <div>
+            <a routerLink="Contact" class="b-hover:text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+        </div>
+    </div>
+    <div class="b-scrollbar-hide b-min-h-screen b-overflow-y-scroll lg:b-hidden b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap 
+                lg:b-w-6/12 b-z-30 b-bg-white xl:b-w-5/12 lg:b-flex-row b-left-0 b-top-0 b-w-0 b-fixed
+                b-overflow-hidden lg:b-static b-h-full b-font-body 2xl:b-text-3xl b-font-semibold b-text-neutral-600 b-pb-20">
+        <div id="leftNav" class="leftNav b-flex b-h-5/6 b-flex-col b-justify-center b-items-center b-text-center b-w-full">
+            <div>
+                <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+            </div>
+            <div>
+                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product
+                </a>
+            </div>
+            <div>
+                <a routerLink="Myposts" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+            </div>
+            <div>
+                <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+            </div>
+        </div>
+    </div>
+    <div class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 2xl:b-space-x-32 xl:b-space-x-20 2xl:b-text-3xl b-font-body b-font-semibold b-text-neutral-700
+     b-tracking-wider">
+        <a routerLink="Login"
+            class="hover:b-text-blue-700 hover:b-underline b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600
+             b-text-blue-600">
+        Login</a>
+        <a routerLink="Sign"
+            class="hover:b-text-blue-600 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2
+             b-text-white b-bg-blue-600 b-border-blue-600 b-py-1.5 b-px-6 2xl:b-py-3 2xl:b-px-8 b-rounded-sm">
+        Sign</a>
+    </div>
+</div>
