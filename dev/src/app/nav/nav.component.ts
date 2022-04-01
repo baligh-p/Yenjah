@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
 
   }
   showBurger = true;
-  isConnected=true
+  isConnected=false
   handleBurgerClick(){
     this.showBurger=!this.showBurger
   }

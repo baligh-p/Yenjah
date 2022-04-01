@@ -22,10 +22,10 @@
             <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product</a>
         </div>
         <div>
-            <a routerLink="Myposts" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+            <a routerLink="Myposts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">My Posts</a>
         </div>
         <div>
-            <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+            <a routerLink="Contact" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Contact us</a>
         </div>
     </div>
     <div [ngClass]="showBurger ? 'b-w-0' : 'b-w-full'" class="leftNav b-scrollbar-hide  b-min-h-screen b-overflow-y-scroll lg:b-hidden b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap 
@@ -64,5 +64,23 @@
             </div>
         </div>
     </div>
-    
+
+    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 2xl:b-space-x-32 xl:b-space-x-20 2xl:b-text-3xl b-font-body b-font-semibold b-text-neutral-700
+                    b-tracking-wider">
+        <a routerLink="login" class="hover:b-text-blue-700 hover:b-underline 
+                    b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600 b-text-blue-600">
+            Login</a>
+        <a routerLink="sign" class="hover:b-text-blue-600 b-hidden lg:b-flex
+            hover:b-bg-white b-delay-100 b-duration-200 b-border-2
+            b-text-white b-bg-blue-600 b-border-blue-600
+            b-py-1.5 b-px-6 2xl:b-py-3 2xl:b-px-8 b-rounded-sm">Sign</a>
+    </div>
+    <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-8 2xl:b-space-x-20 b-tracking-wider">
+        <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 2xl:b-py-3 2xl:b-px-8 2xl:b-text-2xl b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
+            <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 2xl:b-w-12 2xl:b-h-12 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>
+            <div>
+                <img src="/assets/icons/fleche.png" class="b-w-10 b-h-10 2xl:b-w-14 2xl:b-h-14 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
+                <!--navDrop here-->
+            </div>
+    </div>
 </div>
