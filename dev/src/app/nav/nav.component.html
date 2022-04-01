@@ -50,8 +50,8 @@
         <div *ngIf="isConnected" class="b-h-px b-w-10/12 b-bg-stone-400 b-mx-auto b-my-5"></div>
         <div *ngIf="isConnected" class="leftNav b-w-full b-flex b-flex-col b-justify-center b-px-12 b-space-y-7">
             <div class="b-flex b-space-x-3 b-items-center b-justify-start">
-                <img [src]="'/assets/icons/close.png'" class="b-rounded-full b-h-16 b-w-16" alt="photo profile" />
-                <h2 class="b-font-bolder b-text-neutral-900">username</h2>
+                <img [src]="userData.photo" class="b-rounded-full b-h-16 b-w-16" alt="photo profile" />
+                <h2 class="b-font-bolder b-text-neutral-900">{{userData.username}}</h2>
             </div>
             <a class="b-w-1/2" routerLink="profile/idExample">
             <h3 class="hover:b-text-blue-700 b-delay-100 b-duration-200 b-transition-colors">Profile</h3>
@@ -79,8 +79,8 @@
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 2xl:b-py-3 2xl:b-px-8 2xl:b-text-2xl b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
             <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 2xl:b-w-12 2xl:b-h-12 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>
             <div>
-                <img src="/assets/icons/fleche.png" class="b-w-10 b-h-10 2xl:b-w-14 2xl:b-h-14 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
-                <!--navDrop here-->
+                <img src="/assets/icons/fleche.png" (click)="handle_Hide_Show()" class="b-w-10 b-h-10 2xl:b-w-14 2xl:b-h-14 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
+                <app-nav-drop [show]="show" [userData]="userData"></app-nav-drop>
             </div>
     </div>
 </div>

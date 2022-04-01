@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
+import { NavDropComponent } from './nav-drop/nav-drop.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AdvertiseComponent } from './advertise/advertise.component';
     NavComponent,
     LoginComponent,
     AdvertiseComponent,
+    NavDropComponent,
   ],
   imports: [
     BrowserModule,
