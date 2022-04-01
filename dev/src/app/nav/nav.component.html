@@ -1,0 +1,68 @@
+<div class="navBar b-z-10 b-overflow-hidden b-transition-all b-delay-200 b-duration-300  b-w-full b-fixed
+ b-top-0 b-left-0 b-flex b-items-center b-justify-between b-shadow-md b-h-20 2xl:b-h-28 2xl:b-shadow-lg lg:b-h-16
+  b-bg-white">
+  <!--part 1-->
+    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-full xl:b-w-3/12">
+        <div class="lg:b-hidden b-z-40 " [ngClass]="showBurger ? 'Notactive' : 'active'" id="burger" (click)="handleBurgerClick()">
+            <div class="burger b-h-20 b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
+        </div>
+        <h1 [ngClass]="isConnected ? 'b-mr-20 lg:b-mr-0' : ''" class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
+            2xl:b-text-6xl b-text-indigo-600 b-self-center b-font-title b-tracking-wider b-cursor-pointer">Yenjah?<span
+            class="b-text-md b-text-red-500">.tn</span>
+        </h1>
+    </div>
+    <!--part 2-->
+    <div [ngClass]="isConnected ? 'lg:w-5/12' : 'lg:w-6/12'" class="b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap b-z-30 b-bg-white xl:b-w-5/12 b-hidden lg:b-flex b-flex-col lg:b-flex-row b-fixed
+        b-left-0 b-top-0 b-w-0 b-overflow-hidden lg:b-static b-h-full b-items-center b-justify-center lg:b-justify-around 
+        b-font-body 2xl:b-text-2xl b-font-semibold b-text-neutral-600">
+        <div>
+            <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+        </div>
+        <div>
+            <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product</a>
+        </div>
+        <div>
+            <a routerLink="Myposts" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+        </div>
+        <div>
+            <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+        </div>
+    </div>
+    <div [ngClass]="showBurger ? 'b-w-0' : 'b-w-full'" class="leftNav b-scrollbar-hide  b-min-h-screen b-overflow-y-scroll lg:b-hidden b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap 
+                lg:b-w-6/12 b-z-30 b-bg-white xl:b-w-5/12 lg:b-flex-row b-left-0 b-top-0 b-fixed
+                b-overflow-hidden lg:b-static b-h-full b-font-body 2xl:b-text-3xl b-font-semibold b-text-neutral-600 b-pb-20">
+        <div [ngClass]="isConnected ? 'b-h-5/6' : 'b-h-full'" class="leftNav b-flex b-flex-col b-justify-center b-items-center b-text-center b-w-full">
+            <div>
+                <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+            </div>
+            <div>
+                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product
+                </a>
+            </div>
+            <div>
+                <a routerLink="Myposts" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+            </div>
+            <div>
+                <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+            </div>
+        </div>
+        <!--partie profile in small devices in left Navbar-->
+        <div *ngIf="isConnected" class="b-h-px b-w-10/12 b-bg-stone-400 b-mx-auto b-my-5"></div>
+        <div *ngIf="isConnected" class="leftNav b-w-full b-flex b-flex-col b-justify-center b-px-12 b-space-y-7">
+            <div class="b-flex b-space-x-3 b-items-center b-justify-start">
+                <img [src]="'/assets/icons/close.png'" class="b-rounded-full b-h-16 b-w-16" alt="photo profile" />
+                <h2 class="b-font-bolder b-text-neutral-900">username</h2>
+            </div>
+            <a class="b-w-1/2" routerLink="profile/idExample">
+            <h3 class="hover:b-text-blue-700 b-delay-100 b-duration-200 b-transition-colors">Profile</h3>
+            </a>
+            <a class="b-w-1/2" routerLink="reportBug">
+            <h3 class="hover:b-text-blue-700 b-delay-100 b-duration-200 b-transition-colors">report a bug</h3>
+            </a>
+            <div (click)="logOut()" class="b-w-1/2 b-text-red-600 b-text-lg b-font-bold b-cursor-pointer hover:b-text-red-700">
+                <p>Log out</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
