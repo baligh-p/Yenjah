@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +14,19 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
   showBurger = true;
+  isConnected=true
+  show =false
   handleBurgerClick(){
     this.showBurger=!this.showBurger
+  }
+  userData={
+    photo:"/assets/icons/user.png", 
+    username:"flen"
+  }
+  handle_Hide_Show(){
+    this.show=!this.show
+  }
+  logOut(){
+    alert("log out")
   }
 }

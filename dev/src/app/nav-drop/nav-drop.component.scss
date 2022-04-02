@@ -1,0 +1,17 @@
+.profile-item {
+  display: grid;
+  grid-template: auto auto / 45px 40px repeat(10, 1fr);
+  grid-template-areas: "i i n n n n n n n n n n" "i i t t t t t t t t t t";
+  .username {
+    grid-area: n;
+  }
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: i;
+  }
+  .text {
+    grid-area: t;
+  }
+}

@@ -21,7 +21,7 @@
     transform: translateY(10px);
   }
 }
-#burger .active ::before {
+#burger.active ::before {
   transform: translateY(0px) rotate(45deg);
   box-shadow: 0 0 0 black;
 }
@@ -52,23 +52,5 @@
         margin-bottom: 20px;
       }
     }
-  }
-}
-
-.profile-item {
-  display: grid;
-  grid-template: auto auto / 45px 40px repeat(10, 1fr);
-  grid-template-areas: "i i n n n n n n n n n n" "i i t t t t t t t t t t";
-  .username {
-    grid-area: n;
-  }
-  .image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-area: i;
-  }
-  .text {
-    grid-area: t;
   }
 }
