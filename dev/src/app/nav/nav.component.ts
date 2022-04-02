@@ -13,8 +13,8 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  showBurger = true;
-  isConnected=true
+  showBurger = true
+  isConnected=false
   show =false
   handleBurgerClick(){
     this.showBurger=!this.showBurger
