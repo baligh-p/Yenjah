@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     var path=`/login.php?un=${encodeURIComponent(this.username.value)}&pwd=${encodeURIComponent(this.pwd.value)}`
     await this.appService.getData(path).then((res)=>{
       this.isLoading=false
-      if(res.data!=null)
+      if(res.data!=null && res.data.idProfile!=undefined )
       {
         this.disableBtn=true
         var maxAge = new Date();
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         time += 24*60*60*1000*5;/* 5 days cookie maxAge */
         maxAge.setTime(time);
         this.Cookies.set("clid",res.data.idProfile,{expires:maxAge})
-        window.location.pathname="/"
+        this.route.navigate(["/"])
       }
       else 
       {

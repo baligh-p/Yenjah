@@ -44,6 +44,7 @@ export class NavComponent implements OnInit {
     this.show=!this.show
   }
   logOut(){
-    alert("log out")
+    this.cookies.delete("clid")
+    window.location.reload()
   }
 }
