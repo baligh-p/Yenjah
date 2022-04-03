@@ -76,12 +76,12 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-8 b-tracking-wider">
+    <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
-            <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>
-            <div>
-                <img src="/assets/icons/fleche.png" (click)="handle_Hide_Show()" class="b-w-10 b-h-10 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
-                <app-nav-drop [show]="show" [userData]="userData"></app-nav-drop>
-            </div>
+        <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>
+        <div>
+            <img src="/assets/icons/fleche.png" (click)="handle_Hide_Show()" class="b-w-10 b-h-10 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
+            <app-nav-drop [show]="show" [userData]="userData"></app-nav-drop>
+        </div>
     </div>
 </div>

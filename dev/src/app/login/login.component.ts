@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl } from '@angular/forms';
+import { AppService } from '../app.service';
+import { CookieService } from "ngx-cookie-service"
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,8 +10,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService : AppService , private Cookies : CookieService , private route : Router) { 
+  }
   ngOnInit(): void {
+    this.checkConnected()
+  }
+  username=new FormControl('')
+  pwd=new FormControl('')
+  isLoading=false
+  invalidData=false
+  disableBtn=false
+  checkConnected(){/*check if user already connected*/
+    if(this.Cookies.check("clid"))
+    {
+      this.route.navigate(["/"])
+    }
+  }
+  async handleSubmit(e: any ){
+    e.preventDefault()
+    this.invalidData=false
+    this.isLoading=true
+    var path=`/login.php?un=${encodeURIComponent(this.username.value)}&pwd=${encodeURIComponent(this.pwd.value)}`
+    await this.appService.getData(path).then((res)=>{
+      this.isLoading=false
+      if(res.data!=null)
+      {
+        this.disableBtn=true
+        var maxAge = new Date();
+        var time = maxAge.getTime();
+        time += 24*60*60*1000*5;/* 5 days cookie maxAge */
+        maxAge.setTime(time);
+        this.Cookies.set("clid",res.data.idProfile,{expires:maxAge})
+        window.location.pathname="/"
+      }
+      else 
+      {
+        this.invalidData=true
+      }
+    }).catch(()=>{
+      /* waiting for notification component */
+    })
   }
    handleFocusInput(e : any){
         if(e.target.value=="")
