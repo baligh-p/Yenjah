@@ -11,6 +11,6 @@ export class AppService {
     return axios.get(this.url+pathUrl)
   }
   sendData(pathUrl : string, data : any){
-    
+    return axios.post(this.url+pathUrl,data)
   }
 }

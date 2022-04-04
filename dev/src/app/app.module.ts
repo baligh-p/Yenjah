@@ -8,7 +8,8 @@ import { AdvertiseComponent } from './advertise/advertise.component';
 import { NavDropComponent } from './nav-drop/nav-drop.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
-import {CookieService} from "ngx-cookie-service"
+import {CookieService} from "ngx-cookie-service";
+import { SignUpComponent } from './sign-up/sign-up.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import {CookieService} from "ngx-cookie-service"
     AdvertiseComponent,
     NavDropComponent,
     LoaderComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
