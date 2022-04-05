@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName } from '@angular/forms';
+import { FormControl, FormControlName , NgModel } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -7,25 +8,100 @@ import { FormControl, FormControlName } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor( ) { }
+  constructor( private DomSanitizer : DomSanitizer ) { }
 
   ngOnInit(): void {
-    
   }
-  handleSubmit(){
+  
+  /*attributs */ 
 
-  }
+  showRemovePhoto=false
   photoExist=false
   typeNotSupported=false
-  erros=[]
+  usedUsername = false
+  errors : any=[]
+  styles={
+    height:"", 
+    width:"", 
+  }
+  /*methods*/
 
-  image : any;
-  username=new FormControl("")
-  pwd=new FormControl("")
-  confirmePwd=new FormControl("")
+  controlData(){
+    var LetSubmit = true
+    if(!this.UseTrueEmail(this.email))
+    {
+      this.errors.push("Invalide Email")
+      LetSubmit=false
+    } 
+    if(!this.UseTrueOneWord(this.username))
+    {
+      this.errors.push("Username should contains one word")
+      LetSubmit=false
+    }
+    if (this.UseTrueLength(this.username)<3)
+    {
+      LetSubmit=false
+      this.errors.push("Username should contains at least 3 caracteres");
+    }
+    if(this.pwd.length<3)
+    {
+      LetSubmit=false
+      this.errors.push("Password should contains at least 3 caracteres");
+    }
+    if(this.pwd!=this.confirmePwd)
+    {
+      LetSubmit=false
+      this.errors.push("Please confirme your right password");
+    }
+    return LetSubmit
+  }
 
-  handlePhotoChange(){
-    
+  handleSubmit(){
+    const submit = this.controlData()
+    if(submit)
+    {
+      var data = new FormData() 
+    }
+  }
+  
+
+  username : any 
+  pwd  : any
+  confirmePwd : any
+  email  : any 
+  placeHolderImage : any ="/assets/icons/addPhoto.png"
+  removePhoto(file : any){
+    file.target.value=""
+    this.styles.height=""
+    this.styles.width=""
+    this.placeHolderImage="/assets/icons/addPhoto.png"
+    this.photoExist=false
+  }
+  handlePhotoChange(e : any){
+    const file : File= e.target.files[0] 
+    if(e.target.value!="")
+    {
+        if(e.target.files[0].type.indexOf("image")!=-1)
+        {
+          this.placeHolderImage=this.DomSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(e.target.files[0]))
+          this.styles.width="100%"
+          this.styles.height="100%"
+          this.photoExist=true 
+          this.typeNotSupported=false
+        }
+        else 
+        {
+          this.removePhoto(e)
+          this.typeNotSupported=true
+        }
+    }
+    else 
+    {
+        this.placeHolderImage="/assets/icons/addPhoto.png"
+        this.styles.height=""
+        this.styles.width=""
+        this.photoExist=false
+    }
   }
 
   handleFocusInput(e : any){
