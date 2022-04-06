@@ -14,15 +14,22 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUserConnected()
+    this.verifyPath()
   }
   showBurger = true
   isConnected=false
+  showCreatePostIcon : any 
   show =false
   userData={
     username:"", 
     photo:"/assets/icons/user.png", 
     email:""
   }
+  verifyPath(){
+    if(window.location.pathname.indexOf("create-Post")===-1&& this.isConnected) this.showCreatePostIcon=true 
+    else this.showCreatePostIcon=false
+  }
+
   handleBurgerClick(){
     this.showBurger=!this.showBurger
   }

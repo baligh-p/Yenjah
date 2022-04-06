@@ -8,12 +8,11 @@
         <div class="b-flex b-flex-col b-items-left b-justify-center lg:b-w-7/12 b-w-10/12 md:b-w-8/12">
             <label for="username"
                 class="b-text-stone-600 b-h-0 b-select-none b-cursor-text b-translate-y-4 b-relative b-left-1 b-transition-all b-duration-200">Username</label>
-            <input id="username" [(ngModel)]="username" name="username" type="text" (blur)="handleBlurInput($event)"
+            <input id="username" [(ngModel)]="username" (blur)="checkUniqueUsername()" name="username" type="text" (blur)="handleBlurInput($event)"
                 (focus)="handleFocusInput($event)"
                 class="b-border-2 b-indent-1 b-outline-none b-py-3 b-border-stone-400 b-text-lg b-rounded-sm" />
-            <!--{loadingUserName&&
-            <Loader size="15px" border="3px" height="0" class="b-self-end b-relative b-bottom-7" />}-->
-            <p class="b-text-sm b-mt-1 b-text-red-500">Username Already used</p>
+            <app-loader [show]="verifyUsernameLoading" [size]="'15px'" [border]="'3px'" [height]="'0'" [className]="'b-self-end b-relative b-bottom-7'"></app-loader>
+            <p *ngIf="usedUsername" class="b-text-sm b-mt-1 b-text-red-500">Username Already used</p>
         </div>
         <!--email-->
         <div class="b-flex b-flex-col lg:b-w-7/12 b-w-10/12 md:b-w-8/12">

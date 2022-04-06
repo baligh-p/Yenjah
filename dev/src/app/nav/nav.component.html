@@ -82,7 +82,17 @@
         <div>
             <img src="/assets/icons/fleche.png" (click)="handle_Hide_Show()" class="b-w-10 b-h-10 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
             <app-nav-drop [show]="show" [userData]="userData"></app-nav-drop>
-            <!--waiting for mobile create post incon-->
         </div>
     </div>
 </div>
+
+<!--create poste icon for mobile version--> 
+
+<a *ngIf="showCreatePostIcon" routerLink="create-Post">
+    <div class="lg:b-hidden b-fixed b-bottom-7 b-z-0 b-right-5 b-flex b-items-center b-space-x-3 b-cursor-pointer">
+        <div
+            class="b-rounded-full b-border-0 b-border-transparent b-w-8 b-h-8 b-bg-red-400 b-p-3 b-shadow-md b-shadow-neutral-300 b-box-content">
+            <img src="/assets/icons/plus.png" alt="options menu" />
+        </div>
+    </div>
+</a>

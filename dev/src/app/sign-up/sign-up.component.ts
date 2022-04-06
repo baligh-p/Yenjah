@@ -3,6 +3,7 @@ import { FormControl, FormControlName , NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import { CookieService } from 'ngx-cookie-service';
+import axios from 'axios';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -38,6 +39,11 @@ export class SignUpComponent implements OnInit {
       this.errors.push("Invalide Email")
       LetSubmit=false
     } 
+    if(this.usedUsername)
+    {
+      LetSubmit=false 
+      this.errors.push("username already used")
+    }
     if(!UseTrueOneWord(this.username))
     {
       this.errors.push("Username should contains one word")
@@ -60,7 +66,24 @@ export class SignUpComponent implements OnInit {
     }
     return LetSubmit
   }
-
+  verifyUsernameLoading=false
+  async checkUniqueUsername(){
+    if(UseTrueLength(this.username)>2)
+    {
+      this.verifyUsernameLoading=true
+      await this.appService.getData(`/signUp.php?user=${UseTrueString(encodeURIComponent(this.username))}`).then((res)=>{
+      this.verifyUsernameLoading=false
+      if(res.data.nbrUser>0)
+      {
+        this.usedUsername=true
+      }
+      else 
+      {
+        this.usedUsername=false
+      }
+      })
+    }
+  }
   handleSubmit(){
     this.errors=[]
     const submit = this.controlData()

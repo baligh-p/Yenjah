@@ -9,7 +9,7 @@ export class LoaderComponent implements OnInit {
   @Input() size : any ; 
   @Input()  border : any ; 
   @Input() height : any ; 
-  @Input() className : any ; 
+  @Input() class : any ; 
   @Input() show : any ;
   styles={
   }

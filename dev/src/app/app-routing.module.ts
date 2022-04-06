@@ -14,6 +14,10 @@ const routes: Routes = [{
 {
   path:"sign_up" , 
   component:SignUpComponent,
+}, 
+{
+  path:"create-Post" , 
+  component:NavComponent
 }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
