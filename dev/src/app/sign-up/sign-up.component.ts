@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName , NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AppService } from '../app.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -8,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor( private DomSanitizer : DomSanitizer ) { }
+  constructor( private DomSanitizer : DomSanitizer  , private appService : AppService , private cookies : CookieService) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +20,10 @@ export class SignUpComponent implements OnInit {
   showRemovePhoto=false
   photoExist=false
   typeNotSupported=false
-  usedUsername = false
+  usedUsername = false 
+  loading= false
+  disableBtn=false
+
   errors : any=[]
   styles={
     height:"", 
@@ -28,17 +33,17 @@ export class SignUpComponent implements OnInit {
 
   controlData(){
     var LetSubmit = true
-    if(!this.UseTrueEmail(this.email))
+    if(!UseTrueEmail(this.email))
     {
       this.errors.push("Invalide Email")
       LetSubmit=false
     } 
-    if(!this.UseTrueOneWord(this.username))
+    if(!UseTrueOneWord(this.username))
     {
       this.errors.push("Username should contains one word")
       LetSubmit=false
     }
-    if (this.UseTrueLength(this.username)<3)
+    if (UseTrueLength(this.username)<3)
     {
       LetSubmit=false
       this.errors.push("Username should contains at least 3 caracteres");
@@ -57,19 +62,47 @@ export class SignUpComponent implements OnInit {
   }
 
   handleSubmit(){
+    this.errors=[]
     const submit = this.controlData()
     if(submit)
     {
-      var data = new FormData() 
+      this.disableBtn=true
+      this.loading=true
+      var data = new FormData()
+      data.append("username",UseTrueString(this.username))
+      data.append("password",this.pwd) 
+      if (this.image!=undefined)
+      {
+        if(this.image.value!="") data.append("photo",this.image)
+      }
+      data.append("email",this.email)
+      this.appService.sendData("/signUp.php",data).then((res)=>{
+        if(res.data.nbrUser!=0)
+        {
+          this.disableBtn=false
+          this.loading=false
+          this.errors.push("Email already used")
+        }
+        else 
+        {
+          var maxAge = new Date();
+          var time = maxAge.getTime();
+          time += 24*60*60*1000*5;/* 5 days cookie maxAge */
+          maxAge.setTime(time);
+          this.cookies.set("clid",res.data.id,{expires:maxAge})
+          window.location.pathname="/"
+        }
+      })
     }
   }
   
 
-  username : any 
-  pwd  : any
-  confirmePwd : any
-  email  : any 
+  username : any =""
+  pwd  : any =""
+  confirmePwd : any=""
+  email  : any =""
   placeHolderImage : any ="/assets/icons/addPhoto.png"
+  image  : any
   removePhoto(file : any){
     file.target.value=""
     this.styles.height=""
@@ -78,9 +111,9 @@ export class SignUpComponent implements OnInit {
     this.photoExist=false
   }
   handlePhotoChange(e : any){
-    const file : File= e.target.files[0] 
     if(e.target.value!="")
     {
+        const file : File= e.target.files[0] 
         if(e.target.files[0].type.indexOf("image")!=-1)
         {
           this.placeHolderImage=this.DomSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(e.target.files[0]))
@@ -88,6 +121,7 @@ export class SignUpComponent implements OnInit {
           this.styles.height="100%"
           this.photoExist=true 
           this.typeNotSupported=false
+          this.image=file
         }
         else 
         {
@@ -126,41 +160,43 @@ export class SignUpComponent implements OnInit {
       label.style.color=""
     }
   }
-  UseTrueLength(string : any){
-      var chaine=this.cleaner(string) 
-      return chaine.length
-  } 
-  UseTrueString(string : any){
-      return this.cleaner(string).join("")
-  }
-  cleaner(chaine : any){
-      var render=Array.from(chaine)
-      for(var i=0;i<(render.length)-1;i++)
-      {
-          if(render[i]==" "&&render[i+1]==" ")
-          {
-              render.splice(i,1)
-              i--
-          }
-      }
-      if(render[0]!==undefined && render[0]==" ")
-      {
-          render.splice(0,1)
-      }
-      if(render[render.length-1]!==undefined && render[render.length-1]==" ")
-      {
-          render.splice(render.length-1,1)
-      }
-      return render
-  } 
-  UseTrueEmail(email : any){
-  email = this.UseTrueString(email)
-  return  email.indexOf(" ")===-1 && email.indexOf("@")>0 &&
-          email.lastIndexOf(".")>email.indexOf("@")+1 &&
-          email.lastIndexOf(".")+1<email.length
-  } 
-  UseTrueOneWord=(string : any)=>{
-      string=this.UseTrueString(string)
-      return string.indexOf(" ")===-1
-  }
+}
+
+ /*controle de saisir */
+const UseTrueEmail=(email : any)=>{
+email = UseTrueString(email)
+return  email.indexOf(" ")===-1 && email.indexOf("@")>0 &&
+        email.lastIndexOf(".")>email.indexOf("@")+1 &&
+        email.lastIndexOf(".")+1<email.length
+} 
+const UseTrueOneWord=(string : any)=>{
+    string=UseTrueString(string)
+    return string.indexOf(" ")===-1
+}
+const UseTrueLength=(string : any)=>{
+    var chaine=cleaner(string) 
+    return chaine.length
+} 
+const UseTrueString= (string : any)=>{
+    return cleaner(string).join("")
+}
+const cleaner=(chaine : any)=>{
+    var render=Array.from(chaine)
+    for(var i=0;i<(render.length)-1;i++)
+    {
+        if(render[i]==" "&&render[i+1]==" ")
+        {
+            render.splice(i,1)
+            i--
+        }
+    }
+    if(render[0]!==undefined && render[0]==" ")
+    {
+        render.splice(0,1)
+    }
+    if(render[render.length-1]!==undefined && render[render.length-1]==" ")
+    {
+        render.splice(render.length-1,1)
+    }
+    return render
 }

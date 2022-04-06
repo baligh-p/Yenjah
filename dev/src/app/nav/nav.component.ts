@@ -34,7 +34,7 @@ export class NavComponent implements OnInit {
       await this.appService.getData(url).then((res)=>{
         this.userData={
           username:res.data.username,
-          photo:res.data.photo!=null ? res.data.photo :  "/assets/icons/user.png", 
+          photo:res.data.photo!=null ? "./assets/"+res.data.photo :  "/assets/icons/user.png", 
           email:res.data.email
         }
       })
