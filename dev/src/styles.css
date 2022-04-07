@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: body;
+  src: url("./font/body.ttf");
+}
+@font-face {
+  font-family: title;
+  src: url("./font/title.ttf");
+}
+body {
+  background-color: rgba(201, 253, 201, 0.075);
+}

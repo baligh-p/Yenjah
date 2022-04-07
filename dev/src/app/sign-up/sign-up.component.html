@@ -1,0 +1,75 @@
+<div class="b-min-h-screen b-w-full b-flex b-bg-white">
+    <form (submit)="handleSubmit()" #formData="ngForm" class="b-ml-auto b-flex b-flex-col b-justify-center lg:b-space-y-10 b-space-y-14 b-items-center lg:b-w-7/12 b-w-full
+    b-font-body b-my-10">
+        <h4 class="b-text-3xl b-font-bold">Sign In</h4>
+        <p class="b-text-sm b-w-8/12 lg:b-w-full b-text-center b-text-stone-400 b-relative b-bottom-5">Create an account
+            and join advices world</p>
+        <!--username-->
+        <div class="b-flex b-flex-col b-items-left b-justify-center lg:b-w-7/12 b-w-10/12 md:b-w-8/12">
+            <label for="username"
+                class="b-text-stone-600 b-h-0 b-select-none b-cursor-text b-translate-y-4 b-relative b-left-1 b-transition-all b-duration-200">Username</label>
+            <input id="username" [(ngModel)]="username" (blur)="checkUniqueUsername()" name="username" type="text" (blur)="handleBlurInput($event)"
+                (focus)="handleFocusInput($event)"
+                class="b-border-2 b-indent-1 b-outline-none b-py-3 b-border-stone-400 b-text-lg b-rounded-sm" />
+            <app-loader [show]="verifyUsernameLoading" [size]="'15px'" [border]="'3px'" [height]="'0'" [className]="'b-self-end b-relative b-bottom-7'"></app-loader>
+            <p *ngIf="usedUsername" class="b-text-sm b-mt-1 b-text-red-500">Username Already used</p>
+        </div>
+        <!--email-->
+        <div class="b-flex b-flex-col lg:b-w-7/12 b-w-10/12 md:b-w-8/12">
+            <label for="email"
+                class="b-text-stone-600 b-select-none b-h-0 b-cursor-text b-translate-y-4 b-relative b-left-1 b-transition-all b-duration-200">Email</label>
+            <input id="email" type="text" (blur)="handleBlurInput($event)" [(ngModel)]="email" name="email" (focus)="handleFocusInput($event)"
+                class="b-border-2 b-indent-1 b-outline-none b-py-3 b-border-stone-400 b-text-lg b-rounded-sm" />
+        </div>
+        <!--pwd-->
+        <div class="b-flex b-flex-col lg:b-w-7/12 b-w-10/12 md:b-w-8/12">
+            <label for="pwd"
+                class="b-text-stone-600 b-h-0 b-select-none b-cursor-text b-translate-y-4 b-relative b-left-1 b-transition-all b-duration-200">Password</label>
+            <input id="pwd" [(ngModel)]="pwd" name="pwd" type="password" (blur)="handleBlurInput($event)"
+                (focus)="handleFocusInput($event)"
+                class="b-border-2 b-indent-1 b-outline-none b-py-3 b-border-stone-400 b-text-lg b-rounded-sm" />
+            <p class="b-text-xs b-tracking-wide b-text-stone-500 b-mt-3">Password should contains at least 6 caracters:
+                <span class="b-text-red-500"> letter</span> , <span class="b-text-red-500">Number</span> , <span
+                    class="b-text-red-500 b-whitespace-nowrap">special character</span>
+            </p>
+        </div>
+        <!--confirme pwd-->
+        <div class="b-flex b-flex-col lg:b-w-7/12 b-select-none b-w-10/12 md:b-w-8/12">
+            <label for="confirmePwd" class="b-text-stone-600 b-h-0 b-cursor-text b-translate-y-4 b-relative b-left-1 b-transition-all b-duration-200">Confirm
+                Password</label>
+            <input id="confirmePwd" [(ngModel)]="confirmePwd" name="confirme" type="password"
+                (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)"
+                class="b-border-2 b-indent-1 b-outline-none b-py-3 b-border-stone-400 b-text-lg b-rounded-sm" />
+        </div>
+        <!--input File-->
+        <input type="file" id="image" name="image" (input)="handlePhotoChange($event)" class="b-hidden" />
+        <div class="lg:b-w-6/12 xl:b-w-4/12 b-w-10/12 md:b-w-4/12">
+            <h5 class="b-w-full b-text-sm">Add profile photo (<span class="b-text-green-500">Not
+                    required</span>)</h5>
+            <img *ngIf="photoExist" (click)="removePhoto($event)" src="/assets/icons/close.png" class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
+            <div class="b-border-2 b-border-stone-400 b-w-full b-h-60 b-flex b-flex-col b-justify-center b-items-center">
+                <label for="image" [ngStyle]="styles" class="b-h-20 b-w-20">
+                    <img class="b-h-full b-w-full b-cursor-pointer" [src]="placeHolderImage" id="image"
+                        alt="add photo of profile" />
+                </label>
+            </div>
+            <p *ngIf="typeNotSupported" class="b-w-full b-text-sm b-text-yellow-500">Type Of Image not Supported</p>
+        </div>
+        <div class="lg:b-w-7/12 md:b-w-8/12 b-w-10/12">
+            <div class="b-flex b-items-center b-my-2 b-w-full" *ngFor="let error of errors">
+                <img src="/assets/icons/cross.png" class="b-w-4 b-h-4 b-mr-3" alt="exception message" />
+                <p class="b-text-xs b-text-red-500 b-font-semibold b-tracking-widest b-w-full">{{error}}</p>
+            </div>
+        </div>
+        <app-loader [show]="loading" [border]="'6px'" [size]="'50px'"></app-loader>
+        <button *ngIf="!loading" [disabled]="disableBtn" class="b-border-2 b-border-blue-600 b-rounded-sm b-bg-blue-600 b-py-2 b-px-7 b-text-white b-text-lg lg:b-w-7/12 md:b-w-8/12 b-w-10/12 hover:b-bg-white hover:b-text-blue-600
+        b-transition-all b-duration-200 b-delay-100">Create Account</button>
+        <div class="b-w-full b-flex b-justify-center b-items-center b-bg-stone-200">
+            <p class="b-text-md b-border-0 b-py-3 b-text-center b-w-full b-z-0">Already have an Account ?
+                <a routerLink="/login"
+                    class="b-text-blue-600 b-cursor b-cursor-pointer hover:b-underline b-underline-offset-1 b-underline-blue-600">Log in</a>
+            </p>
+        </div>
+    </form>
+    <app-advertise></app-advertise>
+</div>

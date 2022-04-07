@@ -1,0 +1,32 @@
+<div *ngIf="show" class="b-overflow-hidden b-space-y-2 b-font-body b-w-2/6 b-border-0 b-p-3
+ b-bg-white b-shadow-md b-shadow-neutral-400 b-rounded-md b-fixed b-right-14 b-z-50">
+    <a routerLink="profile/idExample">
+    <div class="profile-item hover:b-bg-stone-200 b-rounded-md b-p-2">
+        <img [src]="userData.photo" class="image b-w-16 b-h-16 b-rounded-full 
+        b-flex-none" alt="photo Profile" />
+        <h2 class="username b-text-lg b-font-bold">{{userData.username}}</h2>
+        <p class="text b-text-xs b-underline b-decoration-stone-600 b-font-semibold">Visit your Profile</p>
+    </div>
+    </a>
+    <div class="b-h-px b-w-11/12 b-bg-neutral-200 b-mx-auto"></div>
+    <div class="b-p-2 b-flex b-items-center hover:b-bg-stone-200 b-space-x-3 b-rounded-md b-cursor-pointer b-w-full">
+        <div class="b-rounded-full b-bg-stone-300 b-box-content b-p-3 b-flex-none">
+            <img src="/assets/icons/bug.png" class="b-w-8 b-h-8" alt="logout" />
+        </div>
+        <a routerLink="reportBug">
+            <div>
+                <p class="b-text-md b-font-semibold b-leading-0">report a bug</p>
+                <p class="b-text-xs b-leading-0">Help us to improve application performance and keep advicing
+                    people</p>
+            </div>
+        </a>
+    </div>
+    <div class="b-h-px b-w-11/12 b-bg-neutral-300 b-mx-auto"></div>
+    <div (click)="logOut()" class="b-p-2 b-flex b-items-center hover:b-bg-stone-200 b-space-x-3 
+    b-rounded-md b-cursor-pointer b-w-full">
+        <div class="b-rounded-full b-bg-stone-300 b-box-content b-p-3 b-flex-none">
+            <img src="./assets/icons/logout.png" class="b-w-8 b-h-8" alt="logout" />
+        </div>
+        <p class="b-text-md b-font-semibold">Log Out</p>
+    </div>
+</div>

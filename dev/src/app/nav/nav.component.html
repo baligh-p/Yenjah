@@ -1,1 +1,99 @@
-<p class=" b-text-red-400 container">ahla si beligh chnwa7welek bechfé lik si beligh w sa7a l ma9arouna el skhouna ye bro!</p>
+<div class="navBar b-z-10 b-overflow-hidden b-transition-all b-delay-200 b-duration-300  b-w-full b-fixed
+ b-top-0 b-left-0 b-flex b-items-center b-justify-between b-shadow-md b-h-20 lg:b-h-16
+  b-bg-white">
+  <!--part 1-->
+    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-full xl:b-w-3/12">
+        <div class="lg:b-hidden b-z-40 " [ngClass]="showBurger ? 'Notactive' : 'active'" id="burger" (click)="handleBurgerClick()">
+            <div class="burger b-h-20 b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
+        </div>
+        <h1 [ngClass]="isConnected ? 'b-mr-20 lg:b-mr-0' : ''" class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
+            b-text-indigo-600 b-self-center b-font-title b-tracking-wider b-cursor-pointer">Yenjah?<span
+            class="b-text-md b-text-red-500">.tn</span>
+        </h1>
+    </div>
+    <!--part 2-->
+    <div [ngClass]="isConnected ? 'lg:b-w-5/12' : 'lg:b-w-6/12'" class="b-transition-all b-delay-75 
+        b-duration-300 b-whitespace-nowrap b-z-30 b-bg-white xl:b-w-5/12 b-hidden lg:b-flex b-flex-col lg:b-flex-row b-fixed
+        b-left-0 b-top-0 b-w-0 b-overflow-hidden lg:b-static b-h-full b-items-center b-justify-center lg:b-justify-around 
+        b-font-body b-font-semibold b-text-neutral-600">
+        <div>
+            <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+        </div>
+        <div>
+            <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product</a>
+        </div>
+        <div>
+            <a routerLink="Myposts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">My Posts</a>
+        </div>
+        <div>
+            <a routerLink="Contact" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Contact us</a>
+        </div>
+    </div>
+    <div [ngClass]="showBurger ? 'b-w-0' : 'b-w-full'" class="leftNav b-scrollbar-hide  b-min-h-screen b-overflow-y-scroll lg:b-hidden b-transition-all b-delay-75 b-duration-300 b-whitespace-nowrap 
+                lg:b-w-6/12 b-z-30 b-bg-white xl:b-w-5/12 lg:b-flex-row b-left-0 b-top-0 b-fixed
+                b-overflow-hidden lg:b-static b-h-full b-font-body b-font-semibold b-text-neutral-600 b-pb-20">
+        <div [ngClass]="isConnected ? 'b-h-4/6' : 'b-h-full'" class="leftNav b-flex b-flex-col b-justify-center b-items-center b-text-center b-w-full">
+            <div>
+                <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+            </div>
+            <div>
+                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product
+                </a>
+            </div>
+            <div>
+                <a routerLink="Myposts" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+            </div>
+            <div>
+                <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+            </div>
+        </div>
+        <!--part profile in small devices , in left Navbar-->
+        <div *ngIf="isConnected" class="b-h-px b-w-10/12 b-bg-stone-400 b-mx-auto b-my-5"></div>
+        <div *ngIf="isConnected" class="leftNav b-w-full b-flex b-flex-col b-justify-center b-px-12 b-space-y-7">
+            <div class="b-flex b-space-x-3 b-items-center b-justify-start">
+                <img [src]="userData.photo" class="b-rounded-full b-h-16 b-w-16" alt="photo profile" />
+                <h2 class="b-font-bolder b-text-neutral-900">{{userData.username}}</h2>
+            </div>
+            <a class="b-w-1/2" routerLink="profile/idExample">
+            <h3 class="hover:b-text-blue-700 b-delay-100 b-duration-200 b-transition-colors">Profile</h3>
+            </a>
+            <a class="b-w-1/2" routerLink="reportBug">
+            <h3 class="hover:b-text-blue-700 b-delay-100 b-duration-200 b-transition-colors">report a bug</h3>
+            </a>
+            <div (click)="logOut()" class="b-w-1/2 b-text-red-600 b-text-lg b-font-bold b-cursor-pointer hover:b-text-red-700">
+                <p>Log out</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700
+                    b-tracking-wider">
+        <a routerLink="login" class="hover:b-text-blue-700 hover:b-underline 
+                    b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600 b-text-blue-600">
+            Login</a>
+        <a routerLink="sign_up" class="hover:b-text-blue-600 b-hidden lg:b-flex
+            hover:b-bg-white b-delay-100 b-duration-200 b-border-2
+            b-text-white b-bg-blue-600 b-border-blue-600
+            b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
+    </div>
+    <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
+        <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
+        <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>
+        <div>
+            <img src="/assets/icons/fleche.png" (click)="handle_Hide_Show()" class="b-w-10 b-h-10 b-cursor-pointer b-box-content b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-1" alt="options"/>
+            <app-nav-drop [show]="show" [userData]="userData"></app-nav-drop>
+        </div>
+    </div>
+</div>
+
+<!--create poste icon for mobile version--> 
+
+<a *ngIf="showCreatePostIcon" routerLink="create-Post">
+    <div class="lg:b-hidden b-fixed b-bottom-7 b-z-0 b-right-5 b-flex b-items-center b-space-x-3 b-cursor-pointer">
+        <div
+            class="b-rounded-full b-border-0 b-border-transparent b-w-8 b-h-8 b-bg-red-400 b-p-3 b-shadow-md b-shadow-neutral-300 b-box-content">
+            <img src="/assets/icons/plus.png" alt="options menu" />
+        </div>
+    </div>
+</a>
+>>>>>>> 8841029841b6da3b80144a34b4d5457535f962f4
