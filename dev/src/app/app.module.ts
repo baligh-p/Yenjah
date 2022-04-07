@@ -9,7 +9,8 @@ import { NavDropComponent } from './nav-drop/nav-drop.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
 import {CookieService} from "ngx-cookie-service";
-import { SignUpComponent } from './sign-up/sign-up.component'
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { SignUpComponent } from './sign-up/sign-up.component'
     NavDropComponent,
     LoaderComponent,
     SignUpComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
