@@ -1,0 +1,12 @@
+    <input type="file" [id]="id" (input)="handlePhotoChange($event)" class="b-hidden" />
+    <div class="">
+        <img *ngIf="photoExist" (click)="removePhoto($event)" src="/assets/icons/close.png"
+            class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
+        <div class="b-border-2 b-border-red-200 b-w-full b-h-60 lg:b-h-36 b-flex b-flex-col b-justify-center b-items-center">
+            <label [for]="id" [ngStyle]="styles" class="b-h-20 b-w-20 lg:b-w-14 lg:b-h-14">
+                <img class="b-h-full b-w-full b-cursor-pointer" [src]="placeHolderImage"
+                    alt="add photo of profile"/>
+            </label>
+        </div>
+        <p *ngIf="typeNotSupported" class="b-w-full b-text-sm b-text-yellow-500">Type Of Image not Supported</p>
+    </div>

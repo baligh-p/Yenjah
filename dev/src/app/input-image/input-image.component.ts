@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input , OnInit, Output , EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
-  selector: 'app-create-post',
-  templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css']
+  selector: 'app-input-image',
+  templateUrl: './input-image.component.html',
+  styleUrls: ['./input-image.component.css']
 })
-export class CreatePostComponent implements OnInit {
+export class InputImageComponent implements OnInit {
 
   constructor(private DomSanitizer : DomSanitizer) { }
 
   ngOnInit(): void {
   }
-  description=""
-  title=""
-  nbrTitle=0
-  nbrDesc=0 
-  generalType=["info" , "automobile" , "immobilier" , "telephone"] 
-  specifiqueType=["souris" , "clavier" , "casque"]
+  @Input() id  = "" 
+  @Output() emitteur=new EventEmitter() 
   placeHolderImage : any ="/assets/icons/addPhoto.png"
   photoExist=false
   typeNotSupported=false
@@ -58,31 +54,5 @@ export class CreatePostComponent implements OnInit {
         this.styles.width=""
         this.photoExist=false
     }
-  }
-  handleFocusInput(e : any){
-    if(e.target.value=="")
-    {
-      const label=e.target.parentNode.childNodes[0]
-      label.style.transform="translateY(0)"
-      label.style.fontSize="12px"
-      e.target.style.borderColor="#f87171"
-      label.style.color="#f87171"
-    }
-  }
-  handleBlurInput(e : any){
-      const label=e.target.parentNode.childNodes[0]
-      if(e.target.value=="")
-      { 
-        label.style.transform="translateY(16px)"
-        label.style.fontSize=""
-        e.target.style.borderColor=""
-        label.style.color=""
-      }
-  }
-  handleChangeValueTitle(){
-    this.nbrTitle=this.title.length
-  }
-  handleChangeValueDescription(){
-    this.nbrDesc=this.description.length
   }
 }
