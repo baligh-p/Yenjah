@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AppService } from '../app.service';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -7,16 +8,50 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private DomSanitizer : DomSanitizer) { }
+  constructor(private DomSanitizer : DomSanitizer, private appService : AppService) { }
 
   ngOnInit(): void {
   }
   description=""
   title=""
   nbrTitle=0
-  nbrDesc=0 
-  generalType=["info" , "automobile" , "immobilier" , "telephone"] 
-  specifiqueType=["souris" , "clavier" , "casque"]
+  nbrDesc=0
+  showSelect=false 
+  generalTypeListe=["other","info" , "automobile" , "immobilier" , "telephone" ] 
+  specifiqueTypeListe=[ "other","souris" , "clavier" , "casque"]
+  generalType="other"
+  specificType="other"
+  isLoading=false
+  objectif = "help"
+  errors=[]
+
+  async handleSubmit(){
+    this.isLoading=true
+    var data = new FormData()
+    data.append("title",UseTrueString(this.title))
+    data.append("description",UseTrueString(this.description))
+    data.append("generalType",this.generalType) 
+    data.append("specificType",this.specificType)
+    data.append("objective",this.objectif)
+    if (this.image!=undefined)
+    {
+      if(this.image.value!="") data.append("photo",this.image)
+    }
+    
+    await this.appService.sendData("/createPost.php",data).then(()=>{
+
+    }).catch(()=>{
+      this.isLoading=false
+    })
+  }
+  getSpecifiqueTypes(){
+    /*fetched from restful api*/ 
+  }
+  handleChangeSelect()
+  {
+    if(this.generalType!="other")this.showSelect=true 
+    else this.showSelect=false
+  }
   placeHolderImage : any ="/assets/icons/addPhoto.png"
   photoExist=false
   typeNotSupported=false
@@ -53,10 +88,10 @@ export class CreatePostComponent implements OnInit {
     }
     else 
     {
-        this.placeHolderImage="/assets/icons/addPhoto.png"
-        this.styles.height=""
-        this.styles.width=""
-        this.photoExist=false
+      this.placeHolderImage="/assets/icons/addPhoto.png"
+      this.styles.height=""
+      this.styles.width=""
+      this.photoExist=false
     }
   }
   handleFocusInput(e : any){
@@ -85,4 +120,29 @@ export class CreatePostComponent implements OnInit {
   handleChangeValueDescription(){
     this.nbrDesc=this.description.length
   }
+}
+
+/* --input control-- */
+const UseTrueString= (string : any)=>{
+    return cleaner(string).join("")
+}
+const cleaner=(chaine : any)=>{
+    var render=Array.from(chaine)
+    for(var i=0;i<(render.length)-1;i++)
+    {
+        if(render[i]==" "&&render[i+1]==" ")
+        {
+            render.splice(i,1)
+            i--
+        }
+    }
+    if(render[0]!==undefined && render[0]==" ")
+    {
+        render.splice(0,1)
+    }
+    if(render[render.length-1]!==undefined && render[render.length-1]==" ")
+    {
+        render.splice(render.length-1,1)
+    }
+    return render
 }
