@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.checkConnected()
-  }
+  } 
+
   username=new FormControl('')
   pwd=new FormControl('')
   isLoading=false

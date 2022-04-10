@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
+import {CookieService} from "ngx-cookie-service"
+import {Router} from "@angular/router"
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -8,26 +10,34 @@ import { AppService } from '../app.service';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private DomSanitizer : DomSanitizer, private appService : AppService) { }
+  constructor(private DomSanitizer : DomSanitizer, private appService : AppService , private cookie : CookieService , private route  : Router) { }
 
   ngOnInit(): void {
+    this.getGeneralTypes()
+    this.checkConnected()
+  }
+  checkConnected(){/*check if user already connected*/
+    if(!this.cookie.check("clid"))
+    {
+      this.route.navigate(["/"])
+    }
   }
   description=""
   title=""
   nbrTitle=0
   nbrDesc=0
   showSelect=false 
-  generalTypeListe=["other","info" , "automobile" , "immobilier" , "telephone" ] 
-  specifiqueTypeListe=[ "other","souris" , "clavier" , "casque"]
-  generalType="other"
+  generalTypeListe  : any =[]
+  specifiqueTypeListe=[]
+  generalType ="other"
   specificType="other"
   isLoading=false
   objectif = "help"
-  errors=[]
-
+ 
   async handleSubmit(){
     this.isLoading=true
     var data = new FormData()
+    console.log(this.generalType+" "+this.specificType)
     data.append("title",UseTrueString(this.title))
     data.append("description",UseTrueString(this.description))
     data.append("generalType",this.generalType) 
@@ -44,12 +54,24 @@ export class CreatePostComponent implements OnInit {
       this.isLoading=false
     })
   }
-  getSpecifiqueTypes(){
-    /*fetched from restful api*/ 
+  async getGeneralTypes(){
+    await this.appService.getData("/types.php").then((res)=>{
+      this.generalTypeListe=res.data
+    })
+  }
+  async getSpecifiqueTypes(){
+    var id=this.generalTypeListe.filter((element : any)=> element.type===this.generalType)
+    await this.appService.getData(`/types.php?specType=${encodeURIComponent(id[0].idTypeGeneral)}`).then((res)=>{
+      this.specifiqueTypeListe=res.data
+    })
   }
   handleChangeSelect()
   {
-    if(this.generalType!="other")this.showSelect=true 
+    if(this.generalType!="other")
+    {
+      this.showSelect=true
+      this.getSpecifiqueTypes()
+    } 
     else this.showSelect=false
   }
   placeHolderImage : any ="/assets/icons/addPhoto.png"
@@ -127,22 +149,22 @@ const UseTrueString= (string : any)=>{
     return cleaner(string).join("")
 }
 const cleaner=(chaine : any)=>{
-    var render=Array.from(chaine)
-    for(var i=0;i<(render.length)-1;i++)
+  var render=Array.from(chaine)
+  for(var i=0;i<(render.length)-1;i++)
+  {
+    if(render[i]==" "&&render[i+1]==" ")
     {
-        if(render[i]==" "&&render[i+1]==" ")
-        {
-            render.splice(i,1)
-            i--
-        }
+        render.splice(i,1)
+        i--
     }
-    if(render[0]!==undefined && render[0]==" ")
-    {
-        render.splice(0,1)
-    }
-    if(render[render.length-1]!==undefined && render[render.length-1]==" ")
-    {
-        render.splice(render.length-1,1)
-    }
-    return render
+  }
+  if(render[0]!==undefined && render[0]==" ")
+  {
+    render.splice(0,1)
+  }
+  if(render[render.length-1]!==undefined && render[render.length-1]==" ")
+  {
+    render.splice(render.length-1,1)
+  }
+  return render
 }

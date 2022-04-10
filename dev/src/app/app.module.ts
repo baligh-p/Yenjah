@@ -13,6 +13,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { HomeComponent } from './home/home.component';
 import { CategorieComponent } from './categorie/categorie.component';
+import { PostCardComponent } from './post-card/post-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { CategorieComponent } from './categorie/categorie.component';
     CreatePostComponent,
     HomeComponent,
     CategorieComponent,
+    PostCardComponent,
   ],
   imports: [
     BrowserModule,
