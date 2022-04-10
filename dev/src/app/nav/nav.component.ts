@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { AppService } from '../app.service';
-import {CookieService} from "ngx-cookie-service"
+import {CookieService} from "ngx-cookie-service";
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
