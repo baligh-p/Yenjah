@@ -61,6 +61,3 @@ try {
 } catch(PDOException $e) {
     echo "error of connection  " ;
   }
-
-
-?>

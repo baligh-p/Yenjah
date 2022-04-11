@@ -12,9 +12,10 @@ export class CategorieComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  categories  = {
-    "informatique"   : ["souris" , "clavier" , "casque" , "micro" ] , 
-    "automobile"   : ["labalba" ,  "lablab" , "moto" , "voiture" ] , 
-    "immobilier"   : ["labalba" ,  "lablab" , "moto" , "voiture" ]
-  }
+  categories  = [
+    {"informatique"   : ["souris" , "clavier" , "casque" , "micro" ]} , 
+    {"automobile"   : ["labalba" ,  "lablab" , "moto" , "voiture" ]} , 
+    {"immobilier"   : ["labalba" ,  "lablab" , "moto" , "voiture" ]}
+  ]
+  keys = Object.keys(this.categories)
 }
