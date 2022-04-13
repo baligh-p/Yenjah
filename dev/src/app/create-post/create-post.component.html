@@ -17,7 +17,6 @@
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
                 <select (change)="handleChangeSelect()" id="general" name="generalType" [(ngModel)]="generalType"
                     class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
-                    <option class="b-cursor-pointer" value="other">Other</option>
                     <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type['type']">{{type['type']}}</option>
                 </select>
             </div>
@@ -36,7 +35,7 @@
                     <div class="">
                         <h5 class="b-text-green-500 b-text-sm">Not
                             required</h5>
-                        <img *ngIf="photoExist" (click)="removePhoto($event)" src="/assets/icons/close.png"
+                        <img *ngIf="photoExist" (click)="removePhoto()" src="/assets/icons/close.png"
                             class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
                         <div
                             class="b-border-2 b-border-red-300 b-w-full b-h-60 lg:b-h-44 b-flex b-flex-col b-justify-center b-items-center">

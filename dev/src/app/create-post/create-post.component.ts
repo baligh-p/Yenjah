@@ -42,13 +42,14 @@ export class CreatePostComponent implements OnInit {
     data.append("generalType",this.generalType) 
     data.append("specificType",this.specificType)
     data.append("objective",this.objectif)
+    data.append("idProfile",this.cookie.get("clid"))
     if (this.image!=undefined)
     {
       if(this.image.value!="") data.append("photo",this.image)
     }
     
-    await this.appService.sendData("/createPost.php",data).then((res)=>{
-      console.log(res.data)
+    await this.appService.sendData("/createPost.php",data).then(()=>{
+      this.route.navigate(["/"])
     }).catch(()=>{
       this.isLoading=false
     })
@@ -81,8 +82,8 @@ export class CreatePostComponent implements OnInit {
     height:"", 
     width:"", 
   }
-  removePhoto(file : any){
-    file.target.value=""
+  removePhoto(){
+    this.image=""
     this.styles.height=""
     this.styles.width=""
     this.placeHolderImage="/assets/icons/addPhoto.png"
@@ -103,7 +104,7 @@ export class CreatePostComponent implements OnInit {
         }
         else 
         {
-          this.removePhoto(e)
+          this.removePhoto()
           this.typeNotSupported=true
         }
     }

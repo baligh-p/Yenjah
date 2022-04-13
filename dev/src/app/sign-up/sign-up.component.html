@@ -46,7 +46,7 @@
         <div class="lg:b-w-6/12 xl:b-w-4/12 b-w-10/12 md:b-w-4/12">
             <h5 class="b-w-full b-text-sm">Add profile photo (<span class="b-text-green-500">Not
                     required</span>)</h5>
-            <img *ngIf="photoExist" (click)="removePhoto($event)" src="/assets/icons/close.png" class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
+            <img *ngIf="photoExist" (click)="removePhoto()" src="/assets/icons/close.png" class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
             <div class="b-border-2 b-border-stone-400 b-w-full b-h-60 b-flex b-flex-col b-justify-center b-items-center">
                 <label for="image" [ngStyle]="styles" class="b-h-20 b-w-20">
                     <img class="b-h-full b-w-full b-cursor-pointer" [src]="placeHolderImage" id="image"
