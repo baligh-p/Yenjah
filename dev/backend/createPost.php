@@ -59,6 +59,14 @@ try {
         $idTypeSpecifique,
         $target_file
     ));
+<<<<<<< HEAD
 } catch (PDOException $e) {
     echo "error of connection";
 }
+=======
+} catch(PDOException $e) {
+    echo "error of connection  " ;
+  }
+
+?>
+>>>>>>> origin/raed
