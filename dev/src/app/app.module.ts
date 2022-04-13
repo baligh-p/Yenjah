@@ -14,6 +14,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { HomeComponent } from './home/home.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PostCardComponent } from './post-card/post-card.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { PostCardComponent } from './post-card/post-card.component';
     HomeComponent,
     CategorieComponent,
     PostCardComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

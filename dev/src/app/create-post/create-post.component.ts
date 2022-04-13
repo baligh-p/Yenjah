@@ -37,7 +37,6 @@ export class CreatePostComponent implements OnInit {
   async handleSubmit(){
     this.isLoading=true
     var data = new FormData()
-    console.log(this.generalType+" "+this.specificType)
     data.append("title",UseTrueString(this.title))
     data.append("description",UseTrueString(this.description))
     data.append("generalType",this.generalType) 
@@ -48,8 +47,8 @@ export class CreatePostComponent implements OnInit {
       if(this.image.value!="") data.append("photo",this.image)
     }
     
-    await this.appService.sendData("/createPost.php",data).then(()=>{
-
+    await this.appService.sendData("/createPost.php",data).then((res)=>{
+      console.log(res.data)
     }).catch(()=>{
       this.isLoading=false
     })
