@@ -1,29 +1,31 @@
 <div (submit)="handleSubmit()" class="b-font-body b-min-h-screen b-w-full b-flex b-flex-col b-justify-center b-items-center b-absolute b-top-0 b-left-0">
-    <form class="b-w-full lg:b-w-7/12 xl:b-w-1/2 b-min-h-screen b-flex b-flex-col lg:b-my-24 b-mt-20 b-justify-center b-items-center b-relative b-py-12 b-px-10 b-bg-white b-shadow-lg b-shadow-neutral-200 b-rounded-md ">
+    <form class="b-w-full lg:b-w-7/12 xl:b-w-1/2 b-min-h-screen b-flex b-flex-col lg:b-my-24 b-mt-20 b-justify-center b-items-center b-relative b-py-12 b-px-10 b-bg-white b-shadow-lg b-shadow-neutral-300 b-rounded-md ">
         <h3 class='b-text-center b-text-2xl lg:b-text-3xl b-font-bold b-tracking-widest'>Create Post</h3>
         <p class="b-text-stone-500 b-text-center b-text-md b-mt-2 b-w-full lg:b-w-7/12">Create your post and let it spread in our huge collection</p>
         <div class='b-flex b-flex-col b-justify-center b-items-center b-w-full b-mt-10 b-space-y-12'>
             <div class='b-flex b-flex-col b-items-start b-justify-center lg:b-w-4/6 b-w-full md:b-w-9/12'>
                 <label for="title" class='b-text-stone-500 b-relative b-cursor-text b-bottom-2 b-select-none b-translate-y-4 b-duration-150 b-delay-75 b-h-0 b-left-1'>Title</label>
-                <input id="title"  [(ngModel)]="title" name="title" type="text" (input)="handleChangeValueTitle()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-border-b-2 b-border-red-200 b-p-1 b-w-full b-outline-none" />
+                <input id="title"  [(ngModel)]="title" name="title" type="text" (input)="handleChangeValueTitle()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-border-b-2 b-border-red-300 b-p-1 b-w-full b-outline-none" />
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrTitle}}/20</p>
             </div>
             <div class='b-flex b-flex-col b-items-start b-justify-center lg:b-w-4/6 b-w-full md:b-w-9/12'>
                 <label for="description" class='b-text-stone-500 b-cursor-text b-relative b-bottom-2 b-select-none b-transition-all b-duration-150 b-delay-75 b-translate-y-4 b-h-0 b-left-1'>Description</label>
-                <textarea [(ngModel)]="description" name="description" id="description" (input)="handleChangeValueDescription()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-scrollbar-hide b-border-b-2 b-border-red-200 b-p-1 b-h-32 b-w-full b-outline-none b-resize-none"></textarea>
+                <textarea [(ngModel)]="description" name="description" id="description" (input)="handleChangeValueDescription()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-scrollbar-hide b-border-b-2 b-border-red-300 b-p-1 b-h-32 b-w-full b-outline-none b-resize-none"></textarea>
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrDesc}}/300</p>
             </div>
             <div class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
                 <select (change)="handleChangeSelect()" id="general" name="generalType" [(ngModel)]="generalType"
-                    class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-300 b-text-neutral-600">
-                    <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type">{{type}}</option>
+                    class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
+                    <option class="b-cursor-pointer" value="other">Other</option>
+                    <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type['type']">{{type['type']}}</option>
                 </select>
             </div>
             <div *ngIf="showSelect" class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product Type</label>
-                <select (change)="handleChangeSelect()" id="general" name="specificType" [(ngModel)]="specificType"
-                    class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-300 b-text-neutral-600">
+                <select id="general" name="specificType" [(ngModel)]="specificType"
+                    class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
+                    <option class="b-cursor-pointer" value="other">Other</option>
                     <option class="b-cursor-pointer" *ngFor="let type of specifiqueTypeListe" [value]="type">{{type}}</option>
                 </select>
             </div>
@@ -37,7 +39,7 @@
                         <img *ngIf="photoExist" (click)="removePhoto($event)" src="/assets/icons/close.png"
                             class="b-w-6 b-h-6 b-ml-auto b-mr-3 b-relative b-top-8 b-cursor-pointer" alt="cancel image profil" />
                         <div
-                            class="b-border-2 b-border-red-200 b-w-full b-h-60 lg:b-h-44 b-flex b-flex-col b-justify-center b-items-center">
+                            class="b-border-2 b-border-red-300 b-w-full b-h-60 lg:b-h-44 b-flex b-flex-col b-justify-center b-items-center">
                             <label for="postImage" [ngStyle]="styles" class="b-h-20 b-w-20 lg:b-w-14 lg:b-h-14">
                                 <img class="b-h-full b-w-full b-cursor-pointer" [src]="placeHolderImage" alt="add photo of profile" />
                             </label>

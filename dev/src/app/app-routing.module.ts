@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component"
 import {SignUpComponent} from "./sign-up/sign-up.component"
 import { CreatePostComponent } from './create-post/create-post.component';
 import {HomeComponent} from "./home/home.component"
+import { PostCardComponent } from './post-card/post-card.component';
 const routes: Routes = [{
   path:"", 
   component:NavComponent, 

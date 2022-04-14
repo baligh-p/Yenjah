@@ -3,7 +3,7 @@ import { FormControl, FormControlName , NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import { CookieService } from 'ngx-cookie-service';
-import axios from 'axios';
+import { Router } from "@angular/router"
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,9 +11,10 @@ import axios from 'axios';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor( private DomSanitizer : DomSanitizer  , private appService : AppService , private cookies : CookieService) { }
+  constructor( private DomSanitizer : DomSanitizer  , private appService : AppService , private cookies : CookieService , private route : Router ) { }
 
   ngOnInit(): void {
+    this.checkConnected()
   }
   
   /*attributs */ 
@@ -31,7 +32,12 @@ export class SignUpComponent implements OnInit {
     width:"", 
   }
   /*methods*/
-
+  checkConnected(){/*check if user already connected*/
+    if(this.cookies.check("clid"))
+    {
+      this.route.navigate(["/"])
+    }
+  }
   controlData(){
     var LetSubmit = true
     if(!UseTrueEmail(this.email))
