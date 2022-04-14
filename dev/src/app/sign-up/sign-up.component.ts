@@ -132,8 +132,8 @@ export class SignUpComponent implements OnInit {
   email  : any =""
   placeHolderImage : any ="/assets/icons/addPhoto.png"
   image  : any
-  removePhoto(file : any){
-    file.target.value=""
+  removePhoto(){
+    this.image=""
     this.styles.height=""
     this.styles.width=""
     this.placeHolderImage="/assets/icons/addPhoto.png"
@@ -154,7 +154,7 @@ export class SignUpComponent implements OnInit {
         }
         else 
         {
-          this.removePhoto(e)
+          this.removePhoto()
           this.typeNotSupported=true
         }
     }

@@ -8,7 +8,7 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class NavComponent implements OnInit {
 
-  constructor(private appService : AppService, private cookies : CookieService) {
+  constructor(private appService : AppService, private cookies : CookieService ) {
 
   }
 
