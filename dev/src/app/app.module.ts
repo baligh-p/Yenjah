@@ -14,10 +14,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { HomeComponent } from './home/home.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PostCardComponent } from './post-card/post-card.component';
-<<<<<<< HEAD
-=======
 import { SearchComponent } from './search/search.component';
->>>>>>> a7f15e2fad7c0eaac1177895f1690bb2594f0009
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,10 +28,7 @@ import { SearchComponent } from './search/search.component';
     HomeComponent,
     CategorieComponent,
     PostCardComponent,
-<<<<<<< HEAD
-=======
     SearchComponent,
->>>>>>> a7f15e2fad7c0eaac1177895f1690bb2594f0009
   ],
   imports: [
     BrowserModule,
