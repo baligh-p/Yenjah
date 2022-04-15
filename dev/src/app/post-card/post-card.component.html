@@ -1,30 +1,32 @@
-<div class="b-font-body b-w-full b-shadow-lg b-shadow-neutral-300 b-bg-white b-rounded-lg">
+<div *ngFor="let userData of usersData"  class="b-font-body b-my-9 b-w-full md:b-shadow-lg md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
     <div class="b-w-full b-flex">
         <div class="b-flex b-items-start b-space-x-1 b-relative lg:b-top-6 lg:b-left-5 b-top-2 b-left-2">
-            <img [src]="user.photo" class="b-h-14 b-w-14" />
+            <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-h-14 b-w-14" />
             <div class="b-relative b-top-1">
-                <h3 class="b-font-semibold">{{user.username}}</h3>
-                <h5 class="b-text-xs">{{user.dateCreate}}</h5>
+                <h3 class="b-font-semibold">{{userData.username}}</h3>
+                <h5 class="b-text-xs">{{userData.dateCreate}}</h5>
             </div>
         </div>
         <div class="b-ml-auto b-flex b-flex-col b-items-center b-space-y-2">
-            <p class="b-border-1 b-border-blue-500 b-rounded-tr-lg b-py-1 b-px-6 b-bg-blue-500 b-text-white">{{user.objective}}</p>
-            <img src="/assets/icons/options.png" class="b-h-8 b-w-8 b-cursor-pointer" alt="options">
+            <p [ngClass]="userData.objectif=='help' ? 'b-bg-blue-500' : 'b-bg-green-400' " class="b-border-1 b-border-blue-500 md:b-rounded-tr-lg b-py-1 b-px-6 b-bg-blue-500 b-text-white">{{userData.objectif}}</p>
         </div>
     </div>
-    <div class="b-w-11/12 b-mt-4 b-flex b-items-baseline b-justify-end b-space-x-1">
-        <p class="b-text-sm b-text-right b-font-extrabold b-text-neutral-700">informatique ></p>
-        <p class="b-text-xs b-text-right b-font-semibold">Souris</p>
+    <div class="b-w-11/12 b-mt-4 b-flex b-items-baseline b-text-neutral-700 b-justify-end b-space-x-1">
+        <p class="b-text-xs b-text-right b-font-extrabold">{{userData.generalType}} ></p>
+        <p class="b-text-xs b-text-right b-font-semibold">{{userData.specificType}}</p>
     </div>
     <div class="b-mb-1 b-mt-2">
-        <img src="/assets/icons/darius.jpg" class="b-w-full md:b-h-60 b-h-44" alt="image post">
-    </div>
-    <div class="b-w-full b-mb-2 b-text-sm">
-        <p class="b-ml-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span class="b-text-green-500">decision</span></span> , <span class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span class="b-text-yellow-500">Reacts</span></span></p>
+        <img *ngIf="userData.imagePost" [src]="'/assets/'+userData.imagePost" class="b-w-full md:b-h-60 b-h-44" alt="image post">
     </div>
     <div class="b-w-11/12 b-mx-auto b-mt-4 b-mb-3">
-        <p class="b-font-semibold">{{user.title}}</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, tempore voluptate! Esse, nemo! Nam eligendi, inventore odit modi quaerat quas.</p>
+        <p class="b-font-semibold">{{userData.titre}}</p>
+        <p>{{userData.text}}</p>
+    </div>
+    <div class="b-w-full b-mb-2 b-text-sm b-text-right">
+        <p class="b-mr-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span
+                    class="b-text-green-500">decision</span></span> , <span
+                class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span
+                    class="b-text-yellow-500">Reacts</span></span></p>
     </div>
     <div class="b-flex b-border-t b-border-0 b-py-2 b-px-4 b-items-center b-justify-around">
         <div class="b-flex b-items-center b-justify-center b-cursor-pointer md:b-w-2/6 b-w-2/5">
