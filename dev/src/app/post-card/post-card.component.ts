@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 
 @Component({
-  selector: 'app-post-card',
+  selector: 'app-post-cards',
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.css']
 })
@@ -11,13 +11,6 @@ export class PostCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  user={
-    username:"Rayen" , 
-    title:"title title title",
-    description : "title title title ",
-    photo : "/assets/icons/user.png" , 
-    dateCreate : "20-20-2020 14:14:14", 
-    postPhoto:"/assets/icons/user.png" , 
-    objective:"advice"
-  }
+  @Input() usersData : any
+  @Input() loading : any
 }

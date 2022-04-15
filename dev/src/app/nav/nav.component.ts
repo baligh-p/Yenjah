@@ -29,7 +29,9 @@ export class NavComponent implements OnInit {
     if(window.location.pathname.indexOf("create-Post")===-1&& this.isConnected) this.showCreatePostIcon=true 
     else this.showCreatePostIcon=false
   }
-
+  showFilter(){
+    
+  }
   handleBurgerClick(){
     this.showBurger=!this.showBurger
   }

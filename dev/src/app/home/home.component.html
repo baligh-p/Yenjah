@@ -1,10 +1,16 @@
-<div>
-    <app-categorie></app-categorie>
-    <div class="b-my-16 b-min-h-screen b-mt-24 b-mx-auto lg:b-w-2/5 md:b-w-4/5  b-flex b-flex-col b-space-y-14">
-        <app-search></app-search>
-        <app-post-card></app-post-card>
-        <app-post-card></app-post-card>
-        <app-post-card></app-post-card>
-        <app-post-card></app-post-card>
+<div class="b-flex b-justify-around">
+    <div class="lg:b-flex b-hidden b-w-3/12 b-top-24 b-left-1 b-fixed">
+        <div class="b-w-full">
+            <app-categorie></app-categorie>
+        </div>
+    </div>
+    <div class="b-my-16 b-min-h-screen b-mt-20 b-mx-auto b-w-full lg:b-w-2/5 md:b-w-4/5 b-flex b-flex-col">
+        <div class="b-flex b-flex-col b-justify-center b-items-center">
+            <h3 class="b-text-2xl b-mt-10 b-text-center b-text-neutral-800 b-font-bold b-mb-3">Access +100.000 worth Posts and easly Buy
+                your product </h3>
+            <h4 class="b-text-center b-text-md b-text-stone-500 b-w-10/12">knowing the experience of people who already use a product
+                can help you make the right decision</h4>
+        </div>
+        <app-post-cards [usersData]="usersData" [loading]="loadingForPosts"></app-post-cards>
     </div>
 </div>

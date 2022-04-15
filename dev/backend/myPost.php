@@ -1,5 +1,5 @@
 <?php
-    include './infoService.php';
+    include './infoServer.php';
     try{
         $conn = new PDO("mysql:host=".$host.";dbname=".$dbName, $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

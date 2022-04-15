@@ -29,8 +29,8 @@ if (isset($_POST["objective"])) {
             $id,
             $idProfil,
             $objective,
-            $idTypeGeneral[0],
-            $idTypeSpecifique[0],
+            $idTypeGeneral,
+            $idTypeSpecifique,
             $photoName
         ));
     } catch (PDOException $e) {

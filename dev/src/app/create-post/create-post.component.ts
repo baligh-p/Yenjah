@@ -33,36 +33,41 @@ export class CreatePostComponent implements OnInit {
   specificType="other"
   isLoading=false
   objectif = "help"
- 
-  async handleSubmit(){
-    this.isLoading=true
-    var data = new FormData()
-    console.log(this.generalType+" "+this.specificType)
-    data.append("title",UseTrueString(this.title))
-    data.append("description",UseTrueString(this.description))
-    data.append("generalType",this.generalType) 
-    data.append("specificType",this.specificType)
-    data.append("objective",this.objectif)
-    data.append("idProfile",this.cookie.get("clid"))
-    if (this.image!=undefined)
-    {
-      if(this.image.value!="") data.append("photo",this.image)
-    }
-    
-    await this.appService.sendData("/createPost.php",data).then(()=>{
-      this.route.navigate(["/"])
-    }).catch(()=>{
-      this.isLoading=false
-    })
+  submit=true
+  handleExceptions(){
+
   }
-  async getGeneralTypes(){
-    await this.appService.getData("/types.php").then((res)=>{
+  handleSubmit(){
+    if(this.submit)
+    {
+      this.isLoading=true
+      var data = new FormData()
+      data.append("title",UseTrueString(this.title))
+      data.append("description",UseTrueString(this.description))
+      data.append("generalType",this.generalType) 
+      data.append("specificType",this.specificType)
+      data.append("objective",this.objectif)
+      data.append("idProfile",this.cookie.get("clid"))
+      if (this.image!=undefined)
+      {
+        if(this.image.value!="") data.append("photo",this.image)
+      }
+      
+      this.appService.sendData("/createPost.php",data).then(()=>{
+        this.route.navigate(["/"])
+      }).catch(()=>{
+        this.isLoading=false
+      })
+    }
+  }
+  getGeneralTypes(){
+    this.appService.getData("/types.php").then((res)=>{
       this.generalTypeListe=res.data
     })
   }
-  async getSpecifiqueTypes(){
+  getSpecifiqueTypes(){
     var id=this.generalTypeListe.filter((element : any)=> element.type===this.generalType)
-    await this.appService.getData(`/types.php?specType=${encodeURIComponent(id[0].idTypeGeneral)}`).then((res)=>{
+    this.appService.getData(`/types.php?specType=${encodeURIComponent(id[0].idTypeGeneral)}`).then((res)=>{
       this.specifiqueTypeListe=res.data
     })
   }
@@ -137,11 +142,35 @@ export class CreatePostComponent implements OnInit {
         label.style.color=""
       }
   }
+
+
+  validTitle=true
   handleChangeValueTitle(){
     this.nbrTitle=this.title.length
+    if(this.nbrTitle>20)
+    {
+      this.submit=false
+      this.validTitle=false
+    }
+    else 
+    {
+      this.submit=true
+      this.validTitle=true
+    }
   }
+  validTitleDescription=true
   handleChangeValueDescription(){
     this.nbrDesc=this.description.length
+    if(this.nbrDesc>300)
+    {
+      this.submit=false
+      this.validTitleDescription=false
+    }
+    else 
+    {
+      this.submit=true
+      this.validTitleDescription=true
+    }
   }
 }
 

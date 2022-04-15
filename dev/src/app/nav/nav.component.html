@@ -2,11 +2,11 @@
  b-top-0 b-left-0 b-flex b-items-center b-justify-between b-shadow-md b-h-20 lg:b-h-16
   b-bg-white">
   <!--part 1-->
-    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-full xl:b-w-3/12">
+    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-5/6 xl:b-w-3/12">
         <div class="lg:b-hidden b-z-40 " [ngClass]="showBurger ? 'Notactive' : 'active'" id="burger" (click)="handleBurgerClick()">
             <div class="burger b-h-20 b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
         </div>
-        <h1 [ngClass]="isConnected ? 'b-mr-20 lg:b-mr-0' : ''" class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
+        <h1  class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
             b-text-indigo-600 b-self-center b-font-title b-tracking-wider b-cursor-pointer">Yenjah?<span
             class="b-text-md b-text-red-500">.tn</span>
         </h1>
@@ -16,11 +16,11 @@
         b-duration-300 b-whitespace-nowrap b-z-30 b-bg-white xl:b-w-5/12 b-hidden lg:b-flex b-flex-col lg:b-flex-row b-fixed
         b-left-0 b-top-0 b-w-0 b-overflow-hidden lg:b-static b-h-full b-items-center b-justify-center lg:b-justify-around 
         b-font-body b-font-semibold b-text-neutral-600">
-        <div>
+        <div class="b-flex b-items-start">
             <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
         </div>
         <div>
-            <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product</a>
+            <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top products</a>
         </div>
         <div>
             <a routerLink="Myposts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">My Posts</a>
@@ -37,7 +37,7 @@
                 <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
             </div>
             <div>
-                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top product
+                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top products
                 </a>
             </div>
             <div>
@@ -66,8 +66,7 @@
         </div>
     </div>
 
-    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700
-                    b-tracking-wider">
+    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700 b-tracking-wider">
         <a routerLink="login" class="hover:b-text-blue-700 hover:b-underline 
                     b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600 b-text-blue-600">
             Login</a>
@@ -75,6 +74,9 @@
             hover:b-bg-white b-delay-100 b-duration-200 b-border-2
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
+    </div>
+    <div *ngIf="isConnected" (click)="showFilter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+        <img src="/assets/icons/filter.png" class="b-h-9 b-w-9"/>
     </div>
     <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
