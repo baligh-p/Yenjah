@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="b-ml-auto b-flex b-flex-col b-items-center b-space-y-2">
-            <p [ngClass]="userData.objectif=='help' ? 'b-bg-blue-500' : 'b-bg-green-400' " class="b-border-1 b-border-blue-500 md:b-rounded-tr-lg b-py-1 b-px-6 b-bg-blue-500 b-text-white">{{userData.objectif}}</p>
+            <p [ngClass]="userData.objectif=='help' ? 'b-bg-blue-400' : 'b-bg-green-300' " class="b-border-1 b-border-blue-500 md:b-rounded-tr-lg b-py-1 b-px-6 b-bg-blue-500 b-text-white">{{userData.objectif}}</p>
         </div>
     </div>
     <div class="b-w-11/12 b-mt-4 b-flex b-items-baseline b-text-neutral-700 b-justify-end b-space-x-1">
@@ -19,8 +19,8 @@
         <img *ngIf="userData.imagePost" [src]="'/assets/'+userData.imagePost" class="b-w-full md:b-h-60 b-h-44" alt="image post">
     </div>
     <div class="b-w-11/12 b-mx-auto b-mt-4 b-mb-3">
-        <p class="b-font-semibold">{{userData.titre}}</p>
-        <p>{{userData.text}}</p>
+        <p class="b-font-semibold b-text-clip" >{{userData.titre}}</p>
+        <p class="b-break-words">{{userData.text}}</p>
     </div>
     <div class="b-w-full b-mb-2 b-text-sm b-text-right">
         <p class="b-mr-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span
