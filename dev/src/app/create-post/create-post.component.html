@@ -13,7 +13,7 @@
                 <label for="description" class='b-text-stone-500 b-cursor-text b-relative b-bottom-2 b-select-none b-transition-all b-duration-150 b-delay-75 b-translate-y-4 b-h-0 b-left-1'>Description</label>
                 <textarea [(ngModel)]="description" name="description" id="description" (input)="handleChangeValueDescription()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-scrollbar-hide b-border-b-2 b-border-red-300 b-p-1 b-h-32 b-w-full b-outline-none b-resize-none"></textarea>
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrDesc}}/300</p>
-                <p *ngIf="!validTitleDescription" class="b-text-red-600 b-mt-2 b-text-xs b-font-semibold">very long title</p>
+                <p *ngIf="!validTitleDescription" class="b-text-red-600 b-mt-2 b-text-xs b-font-semibold">very long description</p>
             </div>
             <div class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
