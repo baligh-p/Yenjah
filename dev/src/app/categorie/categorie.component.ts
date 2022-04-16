@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-categorie',
@@ -7,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategorieComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService:AppService) { }
 
   ngOnInit(): void {
-    
+    this.getCategories()
   }
-  categories  = [
-    {"informatique"   : ["souris" , "clavier" , "casque" , "micro" ]} , 
-    {"automobile"   : ["labalba" ,  "lablab" , "moto" , "voiture" ]} , 
-    {"immobilier"   : ["labalba" ,  "lablab" , "moto" , "voiture" ]}
-  ]
+  categories  = {}
   keys = Object.keys(this.categories)
+  getCategories(){
+    this.appService.getData("/types?allTypes=all").then((res)=>{
+      this.categories=res.data
+    })
+  }
 }
