@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service"
@@ -10,11 +10,28 @@ import {Router} from "@angular/router"
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private DomSanitizer : DomSanitizer, private appService : AppService , private cookie : CookieService , private route  : Router) { }
+  constructor(private DomSanitizer : DomSanitizer, private appService : AppService , private cookie : CookieService , private route  : Router) {
+   }
 
   ngOnInit(): void {
     this.getGeneralTypes()
     this.checkConnected()
+    this.checkPath()
+    this.fillForm()
+    this.titleInput=document.getElementById("title")
+  }
+  titleInput : any
+  type  : any
+  checkPath(){
+    if(window.location.pathname.indexOf("/create-Post")!=-1) this.type="create"
+    else this.type="modify"
+  }
+  fillForm(){
+    if(this.type=="modify")
+    {
+      this.title="sdf"
+      
+    }
   }
   checkConnected(){/*check if user already connected*/
     if(!this.cookie.check("clid"))
@@ -52,12 +69,22 @@ export class CreatePostComponent implements OnInit {
       {
         if(this.image.value!="") data.append("photo",this.image)
       }
-      
-      this.appService.sendData("/createPost.php",data).then(()=>{
-        this.route.navigate(["/"])
-      }).catch(()=>{
-        this.isLoading=false
-      })
+      if(this.type=="create")
+      {
+        this.appService.sendData("/createPost.php",data).then(()=>{
+          this.route.navigate(["/"])
+        }).catch(()=>{
+          this.isLoading=false
+        })
+      }
+      else if(this.type=="modify")
+      {
+        this.appService.sendData("/modifyPost.php",data).then(()=>{
+          //something here :: 
+        }).catch(()=>{
+          this.isLoading=false
+        })
+      }
     }
   }
   getGeneralTypes(){
