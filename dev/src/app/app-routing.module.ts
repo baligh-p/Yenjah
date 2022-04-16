@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component"
 import {SignUpComponent} from "./sign-up/sign-up.component"
 import { CreatePostComponent } from './create-post/create-post.component';
 import {HomeComponent} from "./home/home.component"
+import {MyPostComponent} from "./my-post/my-post.component"
 import { PostCardComponent } from './post-card/post-card.component';
 const routes: Routes = [{
   path:"", 
@@ -17,7 +18,11 @@ const routes: Routes = [{
     {
       path:"" ,  
       component:HomeComponent
-    }
+    },
+    {
+      path:"my-post",
+      component:MyPostComponent
+    },
   ]
 },
 {
