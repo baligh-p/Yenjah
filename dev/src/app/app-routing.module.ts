@@ -5,8 +5,7 @@ import {LoginComponent} from "./login/login.component"
 import {SignUpComponent} from "./sign-up/sign-up.component"
 import { CreatePostComponent } from './create-post/create-post.component';
 import {HomeComponent} from "./home/home.component"
-import {MyPostComponent} from "./my-post/my-post.component"
-import { PostCardComponent } from './post-card/post-card.component';
+import { MyPostComponent } from './my-post/my-post.component';
 const routes: Routes = [{
   path:"", 
   component:NavComponent, 
@@ -18,11 +17,19 @@ const routes: Routes = [{
     {
       path:"" ,  
       component:HomeComponent
+<<<<<<< HEAD
     },
     {
       path:"my-post",
       component:MyPostComponent
     },
+=======
+    }, 
+    {
+      path:"my_Post" , 
+      component:MyPostComponent
+    }
+>>>>>>> origin/master
   ]
 },
 {
