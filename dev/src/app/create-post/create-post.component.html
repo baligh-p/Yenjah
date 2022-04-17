@@ -15,14 +15,14 @@
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrDesc}}/300</p>
                 <p *ngIf="!validTitleDescription" class="b-text-red-600 b-mt-2 b-text-xs b-font-semibold">very long description</p>
             </div>
-            <div class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
+            <div *ngIf="type==='create'" class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
                 <select (change)="handleChangeSelect()" id="general" name="generalType" [(ngModel)]="generalType"
                     class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
                     <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type['type']">{{type['type']}}</option>
                 </select>
             </div>
-            <div *ngIf="showSelect" class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
+            <div *ngIf="showSelect && type==='create'" class="lg:b-w-4/6 md:b-w-9/12 b-w-full b-flex b-flex-col b-item-center b-justify-center">
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product Type</label>
                 <select id="general" name="specificType" [(ngModel)]="specificType"
                     class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
@@ -64,7 +64,7 @@
             <div *ngIf="!isLoading" class='b-w-full md:b-w-4/6 lg:b-w-4/6 b-flex b-items-center b-justify-end'>
                 <button [disabled]="!validTitle || !validTitleDescription" [ngClass]="!validTitle || !validTitleDescription ? 'b-opacity-40' : '' " class="lg:b-relative lg:b-w-auto b-w-full hover:b-bg-white hover:b-text-red-400 b-transition-colors b-duration-200 b-delay-100 
             b-shadow-lg b-shadow-neutral-100 hover:b-shadow-none b-border-2 b-border-red-400 b-bg-red-400 b-px-12 b-py-2 b-rounded-sm
-             b-text-white">Create</button>
+             b-text-white">{{type}}</button>
             </div>
         </div>
     </form>

@@ -11,35 +11,6 @@
             </select>
         </div>
         <div class="b-w-full b-mt-14 b-flex b-flex-col b-items-center b-justify-center b-space-y-7">
-            <div class="b-w-11/12 b-flex b-space-x-2 b-border-0 b-shadow-md b-shadow-stone-600 b-rounded-md b-bg-white">
-                <div class="b-w-3/12">
-                    <img class="b-h-28 b-shadow-md b-w-28 b-rounded-tl-md b-rounded-bl-md" [src]="post.photo" alt="darius"/>
-                </div>
-                <div class="b-w-6/12 b-relative b-top-1">
-                    <h2 class="b-text-md b-font-bold">{{post.titre}}</h2>
-                    <p class="b-text-sm b-h-10 b-overflow-hidden b-break-words">{{post.text}}</p>
-                    <div class="b-flex b-items-center b-space-x-2 b-relative b-top-4">
-                        <p class="b-text-sm">{{post.typeGeneral}}</p>
-                        <div class="b-w-px b-h-5 b-bg-stone-400"></div>
-                        <div class="b-flex b-items-center">
-                            <img src="/assets/icons/mouse.png" class="b-w-5 b-h-5" alt="mouse">
-                            <p class="b-text-sm">{{post.typeSpecifique}}</p>
-                        </div>
-                    </div>
-                </div>
-                <!--btns-->
-                <div class="b-flex b-relative b-top-2 b-space-y-2 b-flex-col">
-                    <button class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-green-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-green-400">
-                        <img src="/assets/icons/editing.png" class="b-w-5 b-h-5"/>
-                        <p class="b-text-sm">Change</p>
-                    </button>
-                    <button class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-red-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-red-400">
-                        <img src="/assets/icons/bin.png" class="b-w-5 b-h-5"/>
-                        <p class="b-text-sm">Delete</p>
-                    </button>
-                    <p class="b-text-xs b-w-full b-relative b-top-1 b-right-1">{{post.dateCreate}}</p>
-                </div>
-            </div>
             <div class="b-w-11/12 b-flex b-space-x-2 b-border-0 b-shadow-md b-rounded-md b-bg-white">
                 <div class="b-w-3/12">
                     <img class="b-h-28 b-shadow-md b-w-28 b-rounded-tl-md b-rounded-bl-md" [src]="post.photo" alt="darius" />
@@ -54,71 +25,14 @@
                             <img src="/assets/icons/mouse.png" class="b-w-5 b-h-5" alt="mouse">
                             <p class="b-text-sm">{{post.typeSpecifique}}</p>
                         </div>
+                        <div class="b-w-px b-h-5 b-bg-stone-400"></div>
+                        <p [ngClass]="post.objective ==='help' ? 'b-text-blue-500' : 'b-text-green-500' " class="b-text-sm">{{post.objective}}</p>
                     </div>
                 </div>
                 <!--btns-->
                 <div class="b-flex b-relative b-top-2 b-space-y-2 b-flex-col">
                     <button
                         class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-green-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-green-400">
-                        <img src="/assets/icons/bin.png" class="b-w-5 b-h-5" />
-                        <p class="b-text-sm">Change</p>
-                    </button>
-                    <button
-                        class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-red-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-red-400">
-                        <img src="/assets/icons/editing.png" class="b-w-5 b-h-5" />
-                        <p class="b-text-sm">Delete</p>
-                    </button>
-                    <p class="b-text-xs b-w-full b-relative b-top-1 b-right-1">{{post.dateCreate}}</p>
-                </div>
-            </div><div class="b-w-11/12 b-flex b-space-x-2 b-border-0 b-shadow-md b-rounded-md b-bg-white">
-                <div class="b-w-3/12">
-                    <img class="b-h-28 b-shadow-md b-w-28 b-rounded-tl-md b-rounded-bl-md" [src]="post.photo" alt="darius" />
-                </div>
-                <div class="b-w-6/12 b-relative b-top-1">
-                    <h2 class="b-text-md b-font-bold">{{post.titre}}</h2>
-                    <p class="b-text-sm b-h-10 b-overflow-hidden b-break-words">{{post.text}}</p>
-                    <div class="b-flex b-items-center b-space-x-2 b-relative b-top-4">
-                        <p class="b-text-sm">{{post.typeGeneral}}</p>
-                        <div class="b-w-px b-h-5 b-bg-stone-400"></div>
-                        <div class="b-flex b-items-center">
-                            <img src="/assets/icons/mouse.png" class="b-w-5 b-h-5" alt="mouse">
-                            <p class="b-text-sm">{{post.typeSpecifique}}</p>
-                        </div>
-                    </div>
-                </div>
-                <!--btns-->
-                <div class="b-flex b-relative b-top-2 b-space-y-2 b-flex-col">
-                    <button
-                        class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-green-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-green-400">
-                        <img src="/assets/icons/bin.png" class="b-w-5 b-h-5" />
-                        <p class="b-text-sm">Change</p>
-                    </button>
-                    <button
-                        class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-red-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-red-400">
-                        <img src="/assets/icons/editing.png" class="b-w-5 b-h-5" />
-                        <p class="b-text-sm">Delete</p>
-                    </button>
-                    <p class="b-text-xs b-w-full b-relative b-top-1 b-right-1">{{post.dateCreate}}</p>
-                </div>
-            </div><div class="b-w-11/12 b-flex b-space-x-2 b-border-0 b-shadow-md b-rounded-md b-bg-white">
-                <div class="b-w-3/12">
-                    <img class="b-h-28 b-shadow-md b-w-28 b-rounded-tl-md b-rounded-bl-md" [src]="post.photo" alt="darius" />
-                </div>
-                <div class="b-w-6/12 b-relative b-top-1">
-                    <h2 class="b-text-md b-font-bold">{{post.titre}}</h2>
-                    <p class="b-text-sm b-h-10 b-overflow-hidden b-break-words">{{post.text}}</p>
-                    <div class="b-flex b-items-center b-space-x-2 b-relative b-top-4">
-                        <p class="b-text-sm">{{post.typeGeneral}}</p>
-                        <div class="b-w-px b-h-5 b-bg-stone-400"></div>
-                        <div class="b-flex b-items-center">
-                            <img src="/assets/icons/mouse.png" class="b-w-5 b-h-5" alt="mouse">
-                            <p class="b-text-sm">{{post.typeSpecifique}}</p>
-                        </div>
-                    </div>
-                </div>
-                <!--btns-->
-                <div class="b-flex b-relative b-top-2 b-space-y-2 b-flex-col">
-                    <button class=" b-ml-auto b-w-20 b-px-1 b-py-1 b-border-2 b-rounded-sm b-text-white b-delay-75 b-duration-150 hover:b-bg-green-500 b-border-transparent b-flex b-items-center b-justify-center b-space-x-1 b-bg-green-400">
                         <img src="/assets/icons/bin.png" class="b-w-5 b-h-5" />
                         <p class="b-text-sm">Change</p>
                     </button>

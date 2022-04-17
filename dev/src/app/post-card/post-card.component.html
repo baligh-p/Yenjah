@@ -1,4 +1,4 @@
-<div *ngFor="let userData of usersData"  class="b-font-body b-my-9 b-w-full md:b-shadow-lg md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
+<div *ngFor="let userData of usersData" class="b-font-body b-my-9 b-w-full md:b-shadow-lg md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
     <div class="b-w-full b-flex">
         <div class="b-flex b-items-start b-space-x-1 b-relative lg:b-top-6 lg:b-left-5 b-top-2 b-left-2">
             <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-h-14 b-w-14" />

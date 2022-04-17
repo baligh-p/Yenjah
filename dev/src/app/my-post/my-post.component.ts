@@ -26,6 +26,7 @@ export class MyPostComponent implements OnInit {
     text:"lorem lorem lorem lorem lorem lorem loremlorem lorem lorem lorem lorem lorem lorem lorem loremlorem loremlorem lorem lorem lorem lorem lorem loremlorem lorem" , 
     dateCreate:"2020-20-20 20:20" , 
     typeGeneral:"informatique" , 
-    typeSpecifique:"Souris"
+    typeSpecifique:"Souris" , 
+    objective:"help"
   }
 }

@@ -12,13 +12,15 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private DomSanitizer : DomSanitizer, private appService : AppService , private cookie : CookieService , private route  : Router) {
    }
-
+   /*this component used for create and modify post(MyPostComponent) that's why we use type variable to hide some function*/
   ngOnInit(): void {
-    this.getGeneralTypes()
     this.checkConnected()
     this.checkPath()
+    if(this.type==="create")
+    {
+      this.getGeneralTypes()
+    }
     this.fillForm()
-    this.titleInput=document.getElementById("title")
   }
   titleInput : any
   type  : any
@@ -29,16 +31,17 @@ export class CreatePostComponent implements OnInit {
   fillForm(){
     if(this.type=="modify")
     {
-      this.title="sdf"
-      
+
     }
   }
+
   checkConnected(){/*check if user already connected*/
     if(!this.cookie.check("clid"))
     {
       this.route.navigate(["/"])
     }
   }
+  
   description=""
   title=""
   nbrTitle=0
@@ -61,10 +64,13 @@ export class CreatePostComponent implements OnInit {
       var data = new FormData()
       data.append("title",UseTrueString(this.title))
       data.append("description",UseTrueString(this.description))
-      data.append("generalType",this.generalType) 
-      data.append("specificType",this.specificType)
       data.append("objective",this.objectif)
       data.append("idProfile",this.cookie.get("clid"))
+      if(this.type=="create")
+      {
+        data.append("generalType",this.generalType) 
+        data.append("specificType",this.specificType)
+      }
       if (this.image!=undefined)
       {
         if(this.image.value!="") data.append("photo",this.image)
