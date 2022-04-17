@@ -17,19 +17,11 @@ const routes: Routes = [{
     {
       path:"" ,  
       component:HomeComponent
-<<<<<<< HEAD
-    },
-    {
-      path:"my-post",
-      component:MyPostComponent
-    },
-=======
     }, 
     {
-      path:"my_Post" , 
+      path:"my-post" , 
       component:MyPostComponent
     }
->>>>>>> origin/master
   ]
 },
 {

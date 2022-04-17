@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
->>>>>>> origin/master
 
 @Component({
   selector: 'app-my-post',
@@ -12,13 +9,6 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MyPostComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-=======
   constructor(private route : Router , private cookie : CookieService ) { }
 
   ngOnInit(): void {
@@ -38,5 +28,4 @@ export class MyPostComponent implements OnInit {
     typeGeneral:"informatique" , 
     typeSpecifique:"Souris"
   }
->>>>>>> origin/master
 }
