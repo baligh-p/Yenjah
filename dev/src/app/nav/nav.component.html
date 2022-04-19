@@ -23,7 +23,7 @@
             <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top products</a>
         </div>
         <div>
-            <a routerLink="my_Post" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">My Posts</a>
+            <a routerLink="my-post" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">My Posts</a>
         </div>
         <div>
             <a routerLink="Contact" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Contact us</a>
@@ -99,7 +99,7 @@
     </div>
 </a>
 <!--filter Posts-->
-<div [ngClass]="showFilter ? 'b-w-4/5 md:b-w-3/5' : '' " class="categorieContainer b-duration-300 b-flex-wrap b-top-20 lg:b-top-16 b-z-10 lg:b-flex b-py-1 lg:b-left-px b-shadow-lg b-border b-fixed b-w-0 b-overflow-x-hidden b-right-0 lg:b-w-1/5 b-bg-white">
+<div *ngIf="showFilterNav" [ngClass]="showFilter ? 'b-w-4/5 md:b-w-3/5' : '' " class="categorieContainer b-duration-300 b-flex-wrap b-top-20 lg:b-top-16 b-z-10 b-flex b-py-1 lg:b-left-px b-shadow-lg b-border b-fixed b-w-0 b-overflow-x-hidden b-right-0 lg:b-w-1/5 b-bg-white">
     <app-categorie></app-categorie>
 </div>
 <router-outlet></router-outlet>

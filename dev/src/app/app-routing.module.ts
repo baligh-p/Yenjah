@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NavComponent} from "./nav/nav.component"
 import {LoginComponent} from "./login/login.component"
@@ -19,8 +19,8 @@ const routes: Routes = [{
       component:HomeComponent
     }, 
     {
-      path:"my_Post" , 
-      component:MyPostComponent
+      path:"my-post" ,
+      component:MyPostComponent , 
     }
   ]
 },

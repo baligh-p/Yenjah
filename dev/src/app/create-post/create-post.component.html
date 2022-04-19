@@ -4,13 +4,13 @@
         <p *ngIf="type=='create'" class="b-text-stone-500 b-text-center b-text-sm md:b-text-md b-mt-2 b-w-full lg:b-w-7/12">Create your post and let it spread in our huge collection</p>
         <div class='b-flex b-flex-col b-justify-center b-items-center b-w-full b-mt-10 b-space-y-12'>
             <div class='b-flex b-flex-col b-items-start b-justify-center lg:b-w-4/6 b-w-full md:b-w-9/12'>
-                <label for="title"  class='b-text-stone-500 b-relative b-cursor-text b-bottom-2 b-select-none b-translate-y-4 b-duration-150 b-delay-75 b-h-0 b-left-1'>Title</label>
+                <label *ngIf="type=='create'" for="title"  class='b-text-stone-500 b-relative b-cursor-text b-bottom-2 b-select-none b-translate-y-4 b-duration-150 b-delay-75 b-h-0 b-left-1'>Title</label>
                 <input id="title" autocomplete="off" [(ngModel)]="title" name="title" type="text" (input)="handleChangeValueTitle()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-border-b-2 b-border-red-300 b-p-1 b-w-full b-outline-none" />
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrTitle}}/20</p>
                 <p *ngIf="validTitle!==''" class="b-text-red-600 b-mt-2 b-text-xs b-font-semibold">{{validTitle}}</p>
             </div>
             <div class='b-flex b-flex-col b-items-start b-justify-center lg:b-w-4/6 b-w-full md:b-w-9/12'>
-                <label for="description" class='b-text-stone-500 b-cursor-text b-relative b-bottom-2 b-select-none b-transition-all b-duration-150 b-delay-75 b-translate-y-4 b-h-0 b-left-1'>Description</label>
+                <label *ngIf="type=='create'" for="description" class='b-text-stone-500 b-cursor-text b-relative b-bottom-2 b-select-none b-transition-all b-duration-150 b-delay-75 b-translate-y-4 b-h-0 b-left-1'>Description</label>
                 <textarea [(ngModel)]="description" name="description" id="description" (input)="handleChangeValueDescription()" (blur)="handleBlurInput($event)" (focus)="handleFocusInput($event)" class="b-scrollbar-hide b-border-b-2 b-border-red-300 b-p-1 b-h-32 b-w-full b-outline-none b-resize-none"></textarea>
                 <p class="b-self-end b-h-0 b-overflow-visible b-text-neutral-800 b-relative b-right-1 b-text-sm">{{nbrDesc}}/300</p>
                 <p *ngIf="!validTitleDescription" class="b-text-red-600 b-mt-2 b-text-xs b-font-semibold">very long description</p>
@@ -19,6 +19,7 @@
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
                 <select (change)="handleChangeSelect()" id="general" name="generalType" [(ngModel)]="generalType"
                     class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
+                    <option class="b-cursor-pointer" value="other">Other</option>
                     <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type['type']">{{type['type']}}</option>
                 </select>
             </div>

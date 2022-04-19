@@ -4,7 +4,7 @@
             <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-h-14 b-w-14" />
             <div class="b-relative b-top-1">
                 <h3 class="b-font-semibold">{{userData.username}}</h3>
-                <h5 class="b-text-xs">{{userData.dateCreate}}</h5>
+                <h5 class="b-text-xs">{{changeDate(userData.dateCreate)}}</h5>
             </div>
         </div>
         <div class="b-ml-auto b-flex b-flex-col b-items-center b-space-y-2">

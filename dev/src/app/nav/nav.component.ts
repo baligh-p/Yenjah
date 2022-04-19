@@ -1,6 +1,7 @@
 import { Component , OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -8,16 +9,20 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class NavComponent implements OnInit {
 
-  constructor(private appService : AppService, private cookies : CookieService ) {
+  constructor(private appService : AppService, private cookies : CookieService , private router : Router ) {
+    this.router.events.subscribe(val => {
+      this.verifyPath()
+      window.location.pathname=="/" ? this.showFilterNav=true : this.showFilterNav=false
+    });
   }
-
+  
   ngOnInit(): void {
     this.checkUserConnected()
-    this.verifyPath()
   }
 
   showBurger = true
   showFilter=false
+  showFilterNav=false
   isConnected=false
   showCreatePostIcon : any 
   show =false

@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit , Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service"
@@ -9,9 +9,12 @@ import {Router} from "@angular/router"
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css'] , 
 })
-export class CreatePostComponent implements OnInit {
+export class CreatePostComponent implements OnInit , OnChanges{
 
   constructor(private DomSanitizer : DomSanitizer, private appService : AppService , private cookie : CookieService , private route  : Router) {
+    this.route.events.subscribe(val => {
+      window.location.pathname.indexOf("create-Post")!==-1 ? this.type="create" : this.type="modify"
+    })
    }
    /*this component used for create and modify post(MyPostComponent) that's why we use type variable to hide some function*/
   ngOnInit(): void {
@@ -21,28 +24,34 @@ export class CreatePostComponent implements OnInit {
     {
       this.getGeneralTypes()
     }
-    this.fillForm()
   }
-  titleInput : any
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.currentData && this.type=="modify")
+    {
+      this.image=""
+      this.title=this.currentData.titre 
+      this.description=this.currentData.text  
+      this.objectif=this.currentData.objectif
+      this.placeHolderImage= this.currentData.imagePost ? "assets/"+this.currentData.imagePost :  "assets/icons/addPhoto.png"
+      this.styles.width=this.currentData.imagePost ? "100%" : ""
+      this.styles.height=this.currentData.imagePost ? "100%" : ""
+      this.photoExist=this.currentData.imagePost ? true  : false
+      this.nbrDesc=this.currentData.text.length 
+      this.nbrTitle=this.currentData.titre.length
+    }
+  }
   type  : any
   checkPath(){
     if(window.location.pathname.indexOf("/create-Post")!=-1) this.type="create"
     else this.type="modify"
   }
-  fillForm(){
-    if(this.type=="modify")
-    {
-
-    }
-  }
-
   checkConnected(){/*check if user already connected*/
     if(!this.cookie.check("clid"))
     {
       this.route.navigate(["/"])
     }
   }
-  
+  @Input() currentData :any
   description=""
   title=""
   nbrTitle=0
@@ -53,7 +62,7 @@ export class CreatePostComponent implements OnInit {
   generalType ="other"
   specificType="other"
   isLoading=false
-  objectif = "help"
+  objectif ="help"
   submit=true
   handleSubmit(){
     this.handleChangeValueTitle()
@@ -159,7 +168,7 @@ export class CreatePostComponent implements OnInit {
     }
   }
   handleFocusInput(e : any){
-    if(e.target.value=="")
+    if(e.target.value=="" && this.type==="create")
     {
       const label=e.target.parentNode.childNodes[0]
       label.style.transform="translateY(0)"
@@ -169,9 +178,9 @@ export class CreatePostComponent implements OnInit {
     }
   }
   handleBlurInput(e : any){
-      const label=e.target.parentNode.childNodes[0]
-      if(e.target.value=="")
+      if(e.target.value=="" && this.type==="create")
       { 
+        const label=e.target.parentNode.childNodes[0]
         label.style.transform="translateY(16px)"
         label.style.fontSize=""
         e.target.style.borderColor=""
