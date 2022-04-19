@@ -1,5 +1,5 @@
 <?php
-include "./infoServer.php";
+include_once "./infoServer.php";
 if (isset($_GET["un"])) {
     try {
         $base = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);

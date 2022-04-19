@@ -1,5 +1,5 @@
 <?php
-include "./infoServer.php";
+include_once "./infoServer.php";
 try {
     $base = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
     if (isset($_GET["specType"])) {

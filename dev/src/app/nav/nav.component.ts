@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service";
 @Component({
@@ -9,14 +9,15 @@ import {CookieService} from "ngx-cookie-service";
 export class NavComponent implements OnInit {
 
   constructor(private appService : AppService, private cookies : CookieService ) {
-
   }
 
   ngOnInit(): void {
     this.checkUserConnected()
     this.verifyPath()
   }
+
   showBurger = true
+  showFilter=false
   isConnected=false
   showCreatePostIcon : any 
   show =false
@@ -25,15 +26,18 @@ export class NavComponent implements OnInit {
     photo:"/assets/icons/user.png", 
     email:""
   }
-  verifyPath(){
-    if(window.location.pathname.indexOf("create-Post")===-1&& this.isConnected) this.showCreatePostIcon=true 
-    else this.showCreatePostIcon=false
+  closeNav(){
+    this.showBurger=true
   }
-  showFilter(){
-    
+  verifyPath(){
+    if(window.location.pathname.indexOf("create-Post")===-1 && this.isConnected) this.showCreatePostIcon=true 
+    else this.showCreatePostIcon=false
   }
   handleBurgerClick(){
     this.showBurger=!this.showBurger
+  }
+  show_filter(){
+    this.showFilter=!this.showFilter
   }
   async checkUserConnected(){
     if(this.cookies.check("clid"))

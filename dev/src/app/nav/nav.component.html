@@ -34,17 +34,17 @@
                 b-overflow-hidden lg:b-static b-h-full b-font-body b-font-semibold b-text-neutral-600 b-pb-20">
         <div [ngClass]="isConnected ? 'b-h-4/6' : 'b-h-full'" class="leftNav b-flex b-flex-col b-justify-center b-items-center b-text-center b-w-full">
             <div>
-                <a routerLink="" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
+                <a routerLink="" (click)="closeNav()"  class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Home</a>
             </div>
             <div>
-                <a routerLink="TopProducts" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top products
+                <a routerLink="TopProducts" (click)="closeNav()" class="hover:b-text-blue-700 b-transition-colors b-delay-100 b-duration-200">Top products
                 </a>
             </div>
             <div>
-                <a routerLink="my_Post" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+                <a routerLink="my_Post" (click)="closeNav()" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
             </div>
             <div>
-                <a routerLink="Contact" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
+                <a routerLink="Contact" (click)="closeNav()" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
             </div>
         </div>
         <!--part profile in small devices , in left Navbar-->
@@ -75,8 +75,8 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div *ngIf="isConnected" (click)="showFilter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
-        <img src="/assets/icons/filter.png" class="b-h-9 b-w-9"/>
+    <div *ngIf="isConnected" (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+        <img [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
     </div>
     <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
@@ -99,7 +99,7 @@
     </div>
 </a>
 <!--filter Posts-->
-<div class="categorieContainerLg b-top-20 lg:b-top-16 b-z-10 lg:b-flex b-py-1 lg:b-left-px b-shadow-lg b-border b-fixed b-w-4/5 md:b-w-3/5 b-right-0 lg:b-w-1/5 b-bg-white">
+<div [ngClass]="showFilter ? 'b-w-4/5 md:b-w-3/5' : '' " class="categorieContainer b-duration-300 b-flex-wrap b-top-20 lg:b-top-16 b-z-10 lg:b-flex b-py-1 lg:b-left-px b-shadow-lg b-border b-fixed b-w-0 b-overflow-x-hidden b-right-0 lg:b-w-1/5 b-bg-white">
     <app-categorie></app-categorie>
 </div>
 <router-outlet></router-outlet>

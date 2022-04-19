@@ -1,6 +1,6 @@
 <?php
-include './infoServer.php';
-include "./generateID.php";
+include_once './infoServer.php';
+include_once "./generateID.php";
 if (isset($_POST["objective"])) {
     $idProfil = $_POST["idProfile"];
     $title = $_POST["title"];

@@ -1,5 +1,5 @@
 <?php
-include "./infoServer.php";
+include_once "./infoServer.php";
 if (isset($_GET["generalType"])) {
     $connect = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -1,12 +1,13 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service"
 import {Router} from "@angular/router"
+
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css']
+  styleUrls: ['./create-post.component.css'] , 
 })
 export class CreatePostComponent implements OnInit {
 
@@ -54,10 +55,8 @@ export class CreatePostComponent implements OnInit {
   isLoading=false
   objectif = "help"
   submit=true
-  handleExceptions(){
-
-  }
   handleSubmit(){
+    this.handleChangeValueTitle()
     if(this.submit)
     {
       this.isLoading=true
@@ -91,6 +90,10 @@ export class CreatePostComponent implements OnInit {
           this.isLoading=false
         })
       }
+    }
+    else 
+    {
+      
     }
   }
   getGeneralTypes(){
@@ -177,18 +180,23 @@ export class CreatePostComponent implements OnInit {
   }
 
 
-  validTitle=true
+  validTitle=""
   handleChangeValueTitle(){
     this.nbrTitle=this.title.length
     if(this.nbrTitle>20)
     {
       this.submit=false
-      this.validTitle=false
+      this.validTitle="very long title"
+    }
+    else if(this.nbrTitle<3)
+    {
+      this.submit=false 
+      this.validTitle="title should contains at least 3 characteres"
     }
     else 
     {
       this.submit=true
-      this.validTitle=true
+      this.validTitle=""
     }
   }
   validTitleDescription=true

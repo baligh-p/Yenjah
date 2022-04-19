@@ -1,6 +1,6 @@
 <?php
-include "./infoServer.php";
-include "./generateID.php";
+include_once "./infoServer.php";
+include_once "./generateID.php";
 if (isset($_POST["username"])) {
     $id = generateID(30);
     $cnx = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
