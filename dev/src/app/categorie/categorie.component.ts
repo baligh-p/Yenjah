@@ -16,7 +16,7 @@ export class CategorieComponent implements OnInit {
   categories  = {}
   keys = Object.keys(this.categories)
   getCategories(){
-    this.appService.getData("/types?allTypes=all").then((res)=>{
+    this.appService.getData("/types.php?allTypes=all").then((res)=>{
       this.categories=res.data
     })
   }

@@ -6,7 +6,7 @@ if (isset($_GET["clid"])) {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("SELECT post.idPost , post.text, post.titre, post.dateCreate, post.objectif, post.imagePost, typegeneral.type AS typeGeneral, typespecifique.type AS typeSpecifique 
                                 FROM post, typegeneral, typespecifique 
-                                WHERE post.idTypeGeneral=typegeneral.idTypeGeneral AND post.idTypeSpecifique=typespecifique.idTypeSpecifique AND post.idProfile=?");
+                                WHERE post.idTypeGeneral=typegeneral.idTypeGeneral AND post.idTypeSpecifique=typespecifique.idTypeSpecifique AND post.idProfile=? ORDER BY post.dateCreate DESC");
         $stmt->execute(array(
             $_GET["clid"]
         ));

@@ -2,7 +2,7 @@
 include_once "./infoServer.php";
 if (isset($_POST["objective"])) {
     try {
-        $conn = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $username, $password);
+        $conn = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if (isset($_FILES["photo"])) {
             $photoName = "photoPost/" . time() . basename($_FILES["photo"]["name"]);
@@ -13,10 +13,10 @@ if (isset($_POST["objective"])) {
             $photoName = "";
         };
         $id = $_POST["idPost"];
-        $titre = $_POST["titre"];
-        $text = $_POST["text"];
+        $titre = $_POST["title"];
+        $text = $_POST["description"];
         $objective = $_POST["objective"];
-        $stmt = $conn->prepare("UPDATE `post` SET `text`=?,`titre`=?,`objectif`=?',`imagePost`=? WHERE idPost=?");
+        $stmt = $conn->prepare("UPDATE post SET text=?,titre=?,objectif=?,imagePost=? WHERE idPost=? ");
         $stmt->execute(array(
             $text,
             $titre,

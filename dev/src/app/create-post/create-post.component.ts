@@ -32,10 +32,6 @@ export class CreatePostComponent implements OnInit , OnChanges{
       this.title=this.currentData.titre 
       this.description=this.currentData.text  
       this.objectif=this.currentData.objectif
-      this.placeHolderImage= this.currentData.imagePost ? "assets/"+this.currentData.imagePost :  "assets/icons/addPhoto.png"
-      this.styles.width=this.currentData.imagePost ? "100%" : ""
-      this.styles.height=this.currentData.imagePost ? "100%" : ""
-      this.photoExist=this.currentData.imagePost ? true  : false
       this.nbrDesc=this.currentData.text.length 
       this.nbrTitle=this.currentData.titre.length
     }
@@ -73,11 +69,15 @@ export class CreatePostComponent implements OnInit , OnChanges{
       data.append("title",UseTrueString(this.title))
       data.append("description",UseTrueString(this.description))
       data.append("objective",this.objectif)
-      data.append("idProfile",this.cookie.get("clid"))
       if(this.type=="create")
       {
+        data.append("idProfile",this.cookie.get("clid"))
         data.append("generalType",this.generalType) 
         data.append("specificType",this.specificType)
+      }
+      else 
+      {
+        data.append("idPost",this.currentData.idPost)
       }
       if (this.image!=undefined)
       {
@@ -93,8 +93,9 @@ export class CreatePostComponent implements OnInit , OnChanges{
       }
       else if(this.type=="modify")
       {
-        this.appService.sendData("/modifyPost.php",data).then(()=>{
-          //something here :: 
+        this.appService.sendData("/modifyPost.php",data).then((res)=>{
+         window.location.reload()
+          this.isLoading=false
         }).catch(()=>{
           this.isLoading=false
         })
