@@ -1,4 +1,4 @@
-<div class="b-font-body b-min-h-screen b-w-full b-flex b-flex-col b-justify-center b-items-center b-absolute b-top-0 b-left-0">
+<div  class="b-font-body b-min-h-screen b-w-full lg:b-flex b-flex-col b-justify-center b-items-center b-absolute b-top-0 b-left-0">
     <form (submit)="handleSubmit()" [ngClass]="type=='create' ? 'lg:b-w-7/12 xl:b-w-1/2 b-shadow-lg b-shadow-neutral-300 b-rounded-md b-min-h-screen b-mt-20' : '' " class="b-w-full b-flex b-flex-col lg:b-my-24 b-justify-center b-items-center b-relative b-py-12 b-px-10 b-bg-white">
         <h3 class='b-text-center b-text-2xl lg:b-text-3xl b-font-bold b-tracking-widest'>{{type}} Post</h3>
         <p *ngIf="type=='create'" class="b-text-stone-500 b-text-center b-text-sm md:b-text-md b-mt-2 b-w-full lg:b-w-7/12">Create your post and let it spread in our huge collection</p>

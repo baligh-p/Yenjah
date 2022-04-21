@@ -1,4 +1,4 @@
-import { Component, OnInit , Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit , Input, OnChanges ,  SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 import {CookieService} from "ngx-cookie-service"
@@ -48,6 +48,7 @@ export class CreatePostComponent implements OnInit , OnChanges{
     }
   }
   @Input() currentData :any
+  local = true
   description=""
   title=""
   nbrTitle=0
@@ -100,10 +101,6 @@ export class CreatePostComponent implements OnInit , OnChanges{
           this.isLoading=false
         })
       }
-    }
-    else 
-    {
-      
     }
   }
   getGeneralTypes(){

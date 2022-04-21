@@ -1,0 +1,12 @@
+<div *ngFor="let comment of comments" class="b-space-y-5" >
+    <div class="b-flex b-items-start b-space-x-3 b-font-body">
+        <img  [src]="'/assets/'+comment.photo" class="b-rounded-full b-h-10 b-w-10" />
+        <div class="b-w-10/12">
+            <div class="b-flex b-flex-col b-w-full b-rounded-xl b-px-3 b-py-2 b-bg-neutral-200/60">
+                <h2 class="b-font-semibold">{{comment.username}}</h2>
+                <p class="b-break-words">{{comment.text}}</p>
+            </div>
+            <p class="b-text-xs b-text-right b-mt-1 b-mr-2">{{changeDate(comment.dateCreate)}}</p>
+        </div>
+    </div>
+</div>

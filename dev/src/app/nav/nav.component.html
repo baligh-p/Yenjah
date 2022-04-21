@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div>
-                <a routerLink="my_Post" (click)="closeNav()" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
+                <a routerLink="my-post" (click)="closeNav()" class="hover:b-text-blue-700 b-delay-100 b-duration-200">My Posts</a>
             </div>
             <div>
                 <a routerLink="Contact" (click)="closeNav()" class="hover:b-text-blue-700 b-delay-100 b-duration-200">Contact us</a>
@@ -75,7 +75,7 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div *ngIf="isConnected" (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+    <div *ngIf="isConnected&&showFilterNav" (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
         <img [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
     </div>
     <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">

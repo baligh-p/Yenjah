@@ -16,6 +16,7 @@ import { CategorieComponent } from './categorie/categorie.component';
 import { PostCardComponent } from './post-card/post-card.component';
 import { SearchComponent } from './search/search.component';
 import { MyPostComponent } from './my-post/my-post.component';
+import { CommentComponent } from './comment/comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { MyPostComponent } from './my-post/my-post.component';
     PostCardComponent,
     SearchComponent,
     MyPostComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

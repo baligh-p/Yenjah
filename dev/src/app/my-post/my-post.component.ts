@@ -20,6 +20,11 @@ export class MyPostComponent implements OnInit {
   posts :any
   currentData :any
   filter="alphaD"
+  noPosts=false
+  closeModifing =true
+  closeModify(){
+    this.closeModifing=true
+  }
   checkUserConnected(){
     if(!this.cookie.check("clid"))
     {
@@ -28,6 +33,7 @@ export class MyPostComponent implements OnInit {
   }
   selectPost(selectedPost  : any){
     this.currentData=selectedPost
+    this.closeModifing=false
   }
   magicDates=new CustomizingDate()
   changeDate(date : string){

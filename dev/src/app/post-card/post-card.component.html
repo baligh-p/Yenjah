@@ -1,4 +1,4 @@
-<div *ngFor="let userData of usersData" class="b-font-body b-my-9 b-w-full md:b-shadow-lg md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
+<div *ngFor="let userData of usersData" class="b-font-body b-my-9 b-w-full md:b-shadow-lg b-pb-5 md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
     <div class="b-w-full b-flex">
         <div class="b-flex b-items-start b-space-x-1 b-relative lg:b-top-6 lg:b-left-5 b-top-2 b-left-2">
             <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-h-14 b-w-14" />
@@ -28,7 +28,7 @@
                 class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span
                     class="b-text-yellow-500">Reacts</span></span></p>
     </div>
-    <div class="b-flex b-border-t b-border-0 b-py-2 b-px-4 b-items-center b-justify-around">
+    <div class="b-flex b-border-t b-border-0 b-py-1 b-px-4 b-items-center b-justify-around">
         <div class="b-flex b-items-center b-justify-center b-cursor-pointer md:b-w-2/6 b-w-2/5">
             <div class="b-flex">
                 <div class="b-border-0 hover:b-bg-green-500 b-delay-100 b-duration-200 b-px-4 b-bg-green-300 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
@@ -50,5 +50,15 @@
             <img src="/assets/icons/comment.png" class="b-h-8 b-w-8" alt="icons">
             <p class="b-text-neutral-800 b-hidden lg:b-flex b-text-semibold">Comment</p>
         </div>
+    </div>
+    <!--comment container-->
+    <div class="b-w-full b-px-4">
+        <div class="b-h-px b-w-full b-bg-stone-200 b-mb-7 b-mx-auto"></div>
+        <div class="b-flex b-items-center b-w-full b-mb-7 b-space-x-3">
+            <img *ngIf="user" [src]="'/assets/'+user.photo" class="b-rounded-full b-h-10 b-w-10" />
+            <input type="text" class="b-w-11/12 b-outline-none b-rounded-3xl b-bg-neutral-200/70 b-px-2 b-py-2" placeholder="Write Your Comment">
+            <img (click)="handleSubmitComment()" class="b-h-7 b-w-7 b-cursor-pointer b-relative b-right-12" src="/assets/icons/send-message.png" alt="send comment" />
+        </div>
+        <app-comment [id]="userData.idPost"></app-comment>
     </div>
 </div>
