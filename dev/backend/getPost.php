@@ -55,8 +55,7 @@ if (isset($_GET["clid"])) {
             $data[$index]["decisions"]=$data[$index][1];
             unset($data[$index][1]);
         }
-        print_r($data);
-        print_r(json_encode($result));
+        print_r(json_encode($data));
     } catch (Exception $e) {
         echo "Connection failed: " . $e->getMessage();
       }
@@ -109,8 +108,7 @@ if (isset($_GET["clid"])) {
             $data[$index]["decisions"]=$data[$index][1];
             unset($data[$index][1]);
         }
-        print_r($data);
-        print_r(json_encode($result));
+        print_r(json_encode($data));
     } catch (Exception $e) {
         echo "Connection failed: " . $e->getMessage();
     }
