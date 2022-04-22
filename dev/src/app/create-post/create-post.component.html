@@ -19,10 +19,6 @@
                 <label for="general" class="b-text-sm b-mb-1 b-text-stone-700 ">Select your product categorie</label>
                 <select (change)="handleChangeSelect()" id="general" name="generalType" [(ngModel)]="generalType"
                     class="b-w-full b-outline-none b-p-2 b-rounded-sm b-border-2 b-border-blue-400 b-text-neutral-600">
-<<<<<<< HEAD
-                    <option class="b-cursor-pointer" value="other">Other</option>
-=======
->>>>>>> a7f15e2fad7c0eaac1177895f1690bb2594f0009
                     <option class="b-cursor-pointer" *ngFor="let type of generalTypeListe" [value]="type['type']">{{type['type']}}</option>
                 </select>
             </div>
@@ -62,7 +58,7 @@
                 <div class="b-flex b-text-green-500 b-space-x-2 b-justify-left b-items-center b-text-md lg:b-mr-0 b-ml-3">
                     <label for="advice" class="b-cursor-pointer b-whitespace-nowrap b-text-sm lg:b-text-base">Giving Advice</label>
                     <input type="radio" [(ngModel)]="objectif" value="advice" name="objectif" id="advice">
-                </div>
+                </div>  
             </div>
             <app-loader [show]="isLoading" [border]="'6px'" [size]="'50px'"></app-loader>
             <div *ngIf="!isLoading" class='b-w-full md:b-w-4/6 lg:b-w-4/6 b-flex b-items-center b-justify-end'>

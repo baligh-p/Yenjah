@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { AppService } from '../app.service';
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
-
+  
   constructor(private appService:AppService) { }
 
   ngOnInit(): void {
@@ -16,8 +16,9 @@ export class CategorieComponent implements OnInit {
   categories  = {}
   keys = Object.keys(this.categories)
   getCategories(){
-    this.appService.getData("/types?allTypes=all").then((res)=>{
+    this.appService.getData("/types.php?allTypes=all").then((res)=>{
       this.categories=res.data
     })
   }
+
 }
