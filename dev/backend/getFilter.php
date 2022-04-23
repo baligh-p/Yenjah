@@ -1,4 +1,5 @@
-<?php 
+<?php
+include_once "./infoServer.php";
 if (isset($_GET{"type"})){
     $tab = $_GET["type"];
     try {
