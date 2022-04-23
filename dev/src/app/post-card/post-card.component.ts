@@ -33,7 +33,19 @@ export class PostCardComponent implements OnInit {
       })
     }
   }
-  showDecision=false
+  decisions =[
+    {
+      username:"baligh", 
+      photo:"icons/darius.jpg",
+      decision:"take"
+    },
+    {
+      username:"baligh", 
+      photo:"icons/darius.jpg",
+      decision:"leave"
+    }
+  ]
+  showDecision=true
   showDecisions(){
     this.showDecision=!this.showDecision
   }

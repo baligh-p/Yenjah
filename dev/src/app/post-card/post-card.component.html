@@ -52,13 +52,23 @@
         </div>
     </div>
     <!--decision pop up-->
-    <div *ngIf="showDecision" class="b-fixed b-z-50 b-overflow-y-scroll b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
+    <div *ngIf="showDecision" class="b-fixed b-font-body b-z-50 b-overflow-y-scroll b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
         <div class="b-bg-white b-flex b-flex-col b-items-center b-shadow-md b-h-full b-w-full lg:b-h-4/5 lg:b-w-2/5">
-            <div class="b-border-0 b-p-3 hover:b-bg-stone-200 b-self-end b-relative b-top-1 b-right-1 b-rounded-full">
-                <img (click)="showDecisions()" src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6" alt="close decision pop up"/>
-                <div>
-
+            <div class="b-flex b-border-b b-border-stone-200 b-items-center b-mb-10 b-w-full b-space-x-5">
+                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">All</button>
+                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Take</button>
+                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Leave</button>
+                <div class="b-flex-1 b-flex b-justify-end ">
+                    <div class="b-border-0 b-p-3 b-mr-2 hover:b-bg-stone-200 b-rounded-full">
+                        <img (click)="showDecisions()" src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6"
+                            alt="close decision pop up" />
+                    </div>
                 </div>
+            </div>
+            <div *ngFor="let decision of decisions" class="b-self-start b-mb-4 b-flex b-items-center b-w-full">
+                <img [src]="'/assets/'+decision.photo" class="b-ml-4 b-h-14 b-w-14 b-mr-2 b-rounded-full" alt="photo de profile">
+                <h2 class="b-font-extrabold">{{decision.username}}</h2>
+                <p [ngClass]="decision.decision==='take' ? 'b-text-green-400' : 'b-text-red-400'" class="b-ml-auto b-mr-5">{{decision.decision}}</p>
             </div>
         </div>
     </div>
