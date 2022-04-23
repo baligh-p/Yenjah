@@ -1,3 +1,4 @@
+import { LiteralMapEntry } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
 import { LocalStorageService } from '../local-storage-service.service';
@@ -21,5 +22,14 @@ export class CategorieComponent implements OnInit {
       this.categories=res.data
     })
   }
-
+  types:string[]= []
+  handleCheck(sous:string){
+    var filter=this.types.filter((element : string)=>element===sous)
+    filter.length===0 ? this.types.push(sous) : this.types=this.types.filter((element : string)=>element!==sous)
+    this.locStorage.setItem("typesPosts",this.types)
+  }
+  verifyCheck(sous : string){
+    if(localStorage.getItem("typesPosts")?.indexOf(sous)!=-1) return true 
+    else return false
+  }
 }

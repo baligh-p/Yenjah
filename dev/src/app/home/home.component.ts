@@ -1,4 +1,3 @@
-import { AstMemoryEfficientTransformer } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../app.service';
@@ -16,10 +15,13 @@ export class HomeComponent implements OnInit  {
     this.getPosts()
       this.locStorage.watchStorage().subscribe((data:string)=>{
         this.search=localStorage.getItem("search")||""
+        this.types=localStorage.getItem("typesPosts")!=null ?localStorage.getItem("typesPosts")?.split(",") : []
+        console.log(this.types)
         this.filterData()
     })
   }
-  search=""
+  types:any
+  search=localStorage.getItem("search")||""
   loadingForPosts=false
   interval : any
   usersData=[]
@@ -37,10 +39,11 @@ export class HomeComponent implements OnInit  {
   getPosts(){
       this.loadingForPosts=true
       var idProfileIfExist=this.cookies.get("clid") ||  ""
-      this.appService.getData(`/getInitPost.php?generalType=informatique&idProfile=${idProfileIfExist}`).then((res)=>{
+      this.appService.getData(`/getInitPost.php?types=${this.types}&idProfile=${idProfileIfExist}`).then((res)=>{
       this.usersData=res.data
       this.originData=res.data
       this.loadingForPosts=false
+      this.filterData()
     })
   }
 }

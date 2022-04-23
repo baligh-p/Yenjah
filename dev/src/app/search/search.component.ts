@@ -10,7 +10,9 @@ export class SearchComponent implements OnInit {
   constructor( private locStorage : LocalStorageService) { }
 
   ngOnInit(): void {
+
   }
+  search=localStorage.getItem("search") || ""
   handleSearch(e : any){
     this.locStorage.setItem("search",e.target.value)
   }

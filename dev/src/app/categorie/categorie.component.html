@@ -14,7 +14,7 @@
                 <div class="b-flex b-items-center b-w-11/12 b-text-sm" *ngFor="let sous of element.value">
                     <img src="/assets/icons/computer.png" class="b-h-6 b-w-6 b-mr-3" alt="truck categorie"/>
                     <label [for]="sous" class="b-mr-auto">{{sous}}</label>
-                    <input type="checkbox" class="b-relative b-right-2"  [id]="sous" [name]="sous" />
+                    <input (change)="handleCheck(sous)" [checked]="verifyCheck(sous)" type="checkbox" class="b-relative b-right-2" [id]="sous" [name]="sous" />
                 </div>
             </div>
         </li>
