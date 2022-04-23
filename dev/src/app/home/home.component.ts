@@ -11,17 +11,16 @@ export class HomeComponent implements OnInit {
   constructor(private appService : AppService) { }
 
   ngOnInit(): void {
-    this.getUsers()
+    this.getPosts()
   }
   loadingForPosts=false
   interval : any
-  getUsers(){
+  usersData=[]
+  getPosts(){
       this.loadingForPosts=true
-      this.appService.getData("/getPost.php?generalType=informatique").then((res)=>{
+      this.appService.getData("/getInitPost.php?generalType=informatique").then((res)=>{
       this.usersData=res.data
       this.loadingForPosts=false
     })
   }
-   
-  usersData=[]
 }

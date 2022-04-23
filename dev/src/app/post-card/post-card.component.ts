@@ -15,6 +15,15 @@ export class PostCardComponent implements OnInit {
     this.getProfile()
   }
   user : any
+  showComment=""
+  showComments(idPost : any){
+    if(!this.showComment&&this.connected) this.showComment=idPost
+    else this.showComment=""
+  }
+  magicDates=new CustomizingDate()
+  changeDate(date : string){
+    return this.magicDates.UseDate(date)
+  }
   getProfile(){
     if(this.cookies.check("clid"))
     {
@@ -22,25 +31,6 @@ export class PostCardComponent implements OnInit {
         this.user=res.data
       })
     }
-  }
-  comment=""
-  handleSubmitComment(idPost:string){
-    if(this.comment.length!==0&&this.cookies.check("clid"))
-    {
-      var data=new FormData() 
-      data.append("idProfile",this.cookies.get("clid"))
-      data.append("idPost",idPost)
-      data.append("text",this.comment) 
-      this.appService.sendData("/commentaire.php",data)
-    }
-  }
-  showComment=false
-  showComments(){
-    this.showComment=!this.showComment
-  }
-  magicDates=new CustomizingDate()
-  changeDate(date : string){
-    return this.magicDates.UseDate(date)
   }
   @Input() usersData : any
   @Input() loading : any

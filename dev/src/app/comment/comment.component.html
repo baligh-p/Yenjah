@@ -1,12 +1,23 @@
-<div *ngFor="let comment of comments" class="b-space-y-5" >
-    <div class="b-flex b-items-start b-space-x-3 b-font-body">
-        <img  [src]="'/assets/'+comment.photo" class="b-rounded-full b-h-10 b-w-10" />
-        <div class="b-w-10/12">
-            <div class="b-flex b-flex-col b-w-full b-rounded-xl b-px-3 b-py-2 b-bg-neutral-200/60">
-                <h2 class="b-font-semibold">{{comment.username}}</h2>
-                <p class="b-break-words">{{comment.text}}</p>
+<div *ngIf="show===id" class="b-w-full b-px-4 b-overflow-hidden">
+    <div class="b-h-px b-w-full b-bg-stone-200 b-mb-7 b-mx-auto"></div>
+    <form (submit)="handleSubmitComment()" class="b-flex b-items-center b-w-full b-mb-10 b-space-x-3">
+        <img [src]="user.photo ? '/assets/'+user.photo : ''" class="b-rounded-full b-h-10 b-w-10" />
+        <input type="text" name="comment" [(ngModel)]="commentValue"
+            class="b-w-11/12 b-outline-none b-rounded-3xl b-bg-neutral-200/70 b-px-2 b-py-2"
+            placeholder="Write Your Comment">
+        <img (click)="handleSubmitComment()" class="b-h-6 b-w-6 b-cursor-pointer"
+            src="/assets/icons/send-message.png" alt="send comment" />
+    </form>
+    <div *ngFor="let comment of comments" >
+        <div class="b-flex b-items-start b-space-x-3 b-font-body b-mb-7">
+            <img  [src]="'/assets/'+comment.photo" class="b-rounded-full b-h-10 b-w-10" />
+            <div class="b-w-10/12">
+                <div class="b-flex b-flex-col b-w-full b-rounded-xl b-px-3 b-py-2 b-bg-neutral-200/60">
+                    <h2 class="b-font-semibold">{{comment.username}}</h2>
+                    <p class="b-break-words">{{comment.text}}</p>
+                </div>
+                <p class="b-text-xs b-text-right b-mt-1 b-mr-2">{{changeDate(comment.dateCreate)}}</p>
             </div>
-            <p class="b-text-xs b-text-right b-mt-1 b-mr-2">{{changeDate(comment.dateCreate)}}</p>
         </div>
     </div>
 </div>

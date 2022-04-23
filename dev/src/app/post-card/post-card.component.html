@@ -1,7 +1,7 @@
 <div *ngFor="let userData of usersData" [ngClass]="showComment ? 'b-pb-1' : '' " class="b-font-body b-my-9 b-w-full md:b-shadow-lg md:b-shadow-neutral-300 b-bg-white md:b-rounded-lg">
     <div class="b-w-full b-flex">
-        <div class="b-flex b-items-start b-space-x-1 b-relative lg:b-top-6 lg:b-left-5 b-top-2 b-left-2">
-            <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-h-14 b-w-14" />
+        <div class="b-flex b-items-start b-space-x-2 b-relative lg:b-top-6 lg:b-left-5 b-top-2 b-left-2">
+            <img [src]="userData.profilePhoto ? '/assets/'+userData.profilePhoto  : '/assets/icons/user.png' " class="b-rounded-full b-h-14 b-w-14" />
             <div class="b-relative b-top-1">
                 <h3 class="b-font-semibold">{{userData.username}}</h3>
                 <h5 class="b-text-xs">{{changeDate(userData.dateCreate)}}</h5>
@@ -26,7 +26,7 @@
         <p class="b-mr-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span
                     class="b-text-green-500">decision</span></span> , <span
                 class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span
-                    class="b-text-yellow-500">Reacts</span></span></p>
+                    class="b-text-yellow-500">Rates</span></span></p>
     </div>
     <div class="b-flex b-border-t b-border-0 b-py-1 b-px-4 b-items-center b-justify-around">
         <div class="b-flex b-items-center b-justify-center b-cursor-pointer md:b-w-2/6 b-w-2/5">
@@ -46,20 +46,20 @@
             <p class="b-text-neutral-800 b-hidden lg:b-flex b-text-semibold">Rate</p>
         </div>
         <div class="b-h-10 b-w-px b-bg-stone-200"></div>
-        <div (click)="showComments()" class="b-flex b-items-center b-justify-center md:b-w-2/6 b-w-1/6 b-space-x-2 b-cursor-pointer b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
+        <div (click)="showComments(userData.idPost)" class="b-flex b-items-center b-justify-center md:b-w-2/6 b-w-1/6 b-space-x-2 b-cursor-pointer b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
             <img src="/assets/icons/comment.png" class="b-h-8 b-w-8" alt="icons">
             <p class="b-text-neutral-800 b-hidden lg:b-flex b-text-semibold">Comment</p>
         </div>
     </div>
-    <!--comment container-->
-    <div class="b-w-full b-px-4 b-overflow-hidden" *ngIf="showComment&&connected">
-        <div class="b-h-px b-w-full b-bg-stone-200 b-mb-7 b-mx-auto"></div>
-        <div class="b-flex b-items-center b-w-full b-mb-7 b-space-x-3">
-            <img [src]="'/assets/'+user.photo" class="b-rounded-full b-h-10 b-w-10" />
-            <input type="text" name="comment" [(ngModel)]="comment" class="b-w-11/12 b-outline-none b-rounded-3xl b-bg-neutral-200/70 b-px-2 b-py-2" placeholder="Write Your Comment">
-            <img (click)="handleSubmitComment(userData.idPost)" class="b-h-6 b-w-6 b-cursor-pointer b-relative b-right-12" src="/assets/icons/send-message.png" alt="send comment" />
+    <!--decision pop up-->
+    <div *ngIf="false" class="b-fixed b-z-50 b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
+        <div class="b-bg-white b-flex b-flex-col b-items-center b-shadow-md b-h-full b-w-full lg:b-h-4/5 lg:b-w-2/5">
+            <div class="b-border-0 b-p-3 hover:b-bg-stone-200 b-self-end b-relative b-top-1 b-right-1 b-rounded-full">
+                <img src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6" alt="close decision pop up"/>
+            </div>
         </div>
-        <app-comment [id]="userData.idPost"></app-comment>
     </div>
+    <!--comment container-->
+    <app-comment [show]="showComment" [user]="user" [id]="userData.idPost"></app-comment>
 </div>
 <app-notification></app-notification>
