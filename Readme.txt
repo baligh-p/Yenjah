@@ -1,0 +1,6 @@
+les commandes qui doivent etre installer pour bien executer le projet:
+1-npm i
+2-npm install axios (api) 
+3-npm i ngx-cookie-services (cookies)
+4-npm i tailwind-scrollbar-hide (design)
+5-npm i tailwindcss-placeholders (design)

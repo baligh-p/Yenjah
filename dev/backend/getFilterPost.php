@@ -7,13 +7,15 @@ include_once "./infoServer.php";
         $tab = json_decode($_GET["types"]);
         $data = array();
         for ($i=0 ; i < count($tab) ; $i++){
+            $req= $conn->query("SELECT idTypeSpecifique FROM decision WHERE type=$tab[$i]");
+            $idtypespecifique= $req->fetchColumn();
             $stmt1 = $conn->prepare("SELECT profile.username,profile.photo as
             profilePhoto,p.titre,p.text,p.dateCreate,p.idPost,p.objectif,p.imagePost,g.type as generalType,s.type as specificType
             from post p , typegeneral g , typespecifique s , profile WHERE profile.idProfile=p.idProfile AND
             p.idTypeGeneral=g.idTypeGeneral AND p.idTypeSpecifique=s.idTypeSpecifique AND p.idTypeSpecifique=? order by p.dateCreate
             desc");
             $stmt1->execute(array(
-                $tab[$i]
+                $idtypespecifique
             ));
             $result = $stmt1->fetchAll(PDO::FETCH_ASSOC);
             if (isset($_GET["idProfile"])) {
