@@ -31,11 +31,11 @@
     <div class="b-flex b-border-t b-border-0 b-py-1 md:b-px-4 b-items-center b-justify-around">
         <div class="b-flex b-items-center b-justify-center b-cursor-pointer b-w-2/6">
             <div class="b-flex">
-                <div [ngClass]="userData.decision=='1' ? 'b-bg-green-500 b-border-2 b-border-black' : 'b-bg-green-300 b-border-0'" (click)="makeDecision('1',userData.idPost)" class="hover:b-bg-green-500 b-delay-100 b-duration-200 b-w-12 b-flex b-items-center md:b-px-2 md:b-w-auto b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
+                <div [ngClass]="userData.decision=='1' ? 'b-bg-green-500 b-border-black' : 'b-bg-green-300 b-border-transparent'" (click)="makeDecision('1',userData.idPost)" class="hover:b-bg-green-500 b-border-2 b-delay-100 b-duration-200 b-w-12 b-flex b-items-center md:b-px-2 md:b-w-auto b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
                     <p>Take</p>
                 </div>
                 <div class="b-h-8 b-w-px b-bg-white"></div>
-                <div [ngClass]="userData.decision=='0' ? 'b-bg-red-500 b-border-2 b-border-black' : 'b-bg-red-300 b-border-0'" (click)="makeDecision('0',userData.idPost)" class="hover:b-bg-red-500 b-duration-200 md:b-px-1 b-w-12 b-flex b-items-center md:b-w-auto b-delay-100 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
+                <div [ngClass]="userData.decision=='0' ? 'b-bg-red-500 b-border-black' : 'b-bg-red-300 b-border-transparent'" (click)="makeDecision('0',userData.idPost)" class="hover:b-bg-red-500 b-border-2 b-duration-200 md:b-px-1 b-w-12 b-flex b-items-center md:b-w-auto b-delay-100 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
                     <p>Leave</p>
                 </div>
             </div>

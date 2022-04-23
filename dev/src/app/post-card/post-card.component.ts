@@ -1,8 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { CustomizingDate } from '../home/customizingDates';
 import {CookieService} from "ngx-cookie-service"
-import { AppService } from '../app.service';
-import { elementAt } from 'rxjs';
+import { AppService } from '../app.service';;
 @Component({
   selector: 'app-post-cards',
   templateUrl: './post-card.component.html',
@@ -67,7 +66,7 @@ export class PostCardComponent implements OnInit {
   }
   makeDecision(decision : string,idPost : string){
     this.usersData.forEach((element : any) => {
-      if(element.idPost===idPost)
+      if(element.idPost===idPost&&this.cookies.check("clid"))
       {
         if(element.decision==decision) element.decision=""
         else element.decision=decision
