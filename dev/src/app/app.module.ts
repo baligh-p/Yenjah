@@ -17,6 +17,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { SearchComponent } from './search/search.component';
 import { MyPostComponent } from './my-post/my-post.component';
 import { CommentComponent } from './comment/comment.component';
+import { NotificationComponent } from './notification/notification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { CommentComponent } from './comment/comment.component';
     SearchComponent,
     MyPostComponent,
     CommentComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

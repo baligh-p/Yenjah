@@ -2,7 +2,7 @@
  b-top-0 b-left-0 b-flex b-items-center b-justify-between b-shadow-md b-h-20 lg:b-h-16
   b-bg-white">
   <!--part 1-->
-    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-5/6 xl:b-w-3/12">
+    <div class="b-flex b-items-center lg:b-justify-center b-justify-between lg:b-w-3/12 b-w-full xl:b-w-3/12">
         <div class="lg:b-hidden b-z-40 " [ngClass]="showBurger ? 'Notactive' : 'active'" id="burger" (click)="handleBurgerClick()">
             <div class="burger b-h-20 b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
         </div>
@@ -75,8 +75,8 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div *ngIf="isConnected&&showFilterNav" (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
-        <img [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
+    <div  (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+        <img *ngIf="isConnected&&showFilterNav" [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
     </div>
     <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
@@ -102,5 +102,5 @@
 <div *ngIf="showFilterNav" [ngClass]="showFilter ? 'b-w-4/5 md:b-w-3/5' : '' " class="categorieContainer b-duration-300 b-flex-wrap b-top-20 lg:b-top-16 b-z-10 b-flex b-py-1 lg:b-left-px b-shadow-lg b-border b-fixed b-w-0 b-overflow-x-hidden b-right-0 lg:b-w-1/5 b-bg-white">
     <app-categorie></app-categorie>
 </div>
-<router-outlet></router-outlet>
 
+<router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 <div class="b-h-screen b-font-body">
     <div [ngClass]="!closeModifing ? 'b-hidden' : '' " style="height:calc(100vh - 64px);" class="lg:b-w-5/12 b-w-full b-fixed lg:b-inline-block b-top-16 b-overflow-y-scroll b-scrollbar-hide b-left-0 b-bg-neutral-800 b-shadow-lg b-shadow-neutral-500">
-        <h2 class="b-text-2xl b-font-bold b-text-white b-mt-6 b-text-center b-mb-10">Manage Your Posts</h2>
+        <h2 class="b-text-2xl b-font-bold b-text-white lg:b-mt-6 b-mt-20 b-text-center b-mb-10">Manage Your Posts</h2>
         <div class="b-flex b-w-full b-items-center ">
             <select (change)="handleFilter()" [(ngModel)]="filter" class="b-border-2 b-ml-auto b-outline-none b-shadow-sm b-mr-5 b-border-blue-500 b-h-8 b-bg-blue-500 b-text-white b-shadow-stone-500 b-rounded-sm">
                 <option class="b-bg-white b-text-black " value="alphaD">Alphabet (decreasing)</option>

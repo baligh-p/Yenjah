@@ -10,7 +10,7 @@ import { AppService } from '../app.service';
 export class PostCardComponent implements OnInit {
 
   constructor( private cookies : CookieService , private appService : AppService) { }
-
+  connected=this.cookies.check("clid")
   ngOnInit(): void {
     this.getProfile()
   }
@@ -23,8 +23,20 @@ export class PostCardComponent implements OnInit {
       })
     }
   }
-  handleSubmitComment(){
-    
+  comment=""
+  handleSubmitComment(idPost:string){
+    if(this.comment.length!==0&&this.cookies.check("clid"))
+    {
+      var data=new FormData() 
+      data.append("idProfile",this.cookies.get("clid"))
+      data.append("idPost",idPost)
+      data.append("text",this.comment) 
+      this.appService.sendData("/commentaire.php",data)
+    }
+  }
+  showComment=false
+  showComments(){
+    this.showComment=!this.showComment
   }
   magicDates=new CustomizingDate()
   changeDate(date : string){

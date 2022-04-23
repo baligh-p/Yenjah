@@ -11,6 +11,7 @@ export class CommentComponent implements OnInit {
   constructor(private appService :AppService) { }
 
   ngOnInit(): void {
+    this.getComments()
   }
   @Input() id : any
   magicDates=new CustomizingDate()
@@ -18,14 +19,9 @@ export class CommentComponent implements OnInit {
     return this.magicDates.UseDate(date)
   }
   getComments(){
-    this.appService.getData("")
+    this.appService.getData(`/commentaire.php?idPost=${this.id}`).then((res)=>{
+      this.comments=res.data
+    })
   }
-  comments=[
-    {
-      "text":"loremloremloremloremloremloremloremloremloremloremloremloremloremlorem" , 
-      "username":"raed", 
-      "dateCreate":"2020-20-20 20:20:20" , 
-      "photo":"/photoProfile/xv91707v84A24j2r251W.jpg"
-    }
-  ]
+  comments : any
 }
