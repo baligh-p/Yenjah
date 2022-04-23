@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LocalStorageService } from '../local-storage-service.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor( private locStorage : LocalStorageService) { }
 
   ngOnInit(): void {
   }
-
+  handleSearch(e : any){
+    this.locStorage.setItem("search",e.target.value)
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
+import { LocalStorageService } from '../local-storage-service.service';
 
 @Component({
   selector: 'app-categorie',
@@ -8,7 +9,7 @@ import { AppService } from '../app.service';
 })
 export class CategorieComponent implements OnInit {
   
-  constructor(private appService:AppService) { }
+  constructor(private appService:AppService , private locStorage : LocalStorageService) { }
 
   ngOnInit(): void {
     this.getCategories()
