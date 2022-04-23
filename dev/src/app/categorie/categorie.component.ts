@@ -14,6 +14,7 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories()
+    alert(localStorage.getItem("typesPosts"))
   }
   categories  = {}
   keys = Object.keys(this.categories)
@@ -22,7 +23,7 @@ export class CategorieComponent implements OnInit {
       this.categories=res.data
     })
   }
-  types:string[]= []
+  types:string[]= localStorage.getItem("typesPosts")?.split(",") ||[]
   handleCheck(sous:string){
     var filter=this.types.filter((element : string)=>element===sous)
     filter.length===0 ? this.types.push(sous) : this.types=this.types.filter((element : string)=>element!==sous)

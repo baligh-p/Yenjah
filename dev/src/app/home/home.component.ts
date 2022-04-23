@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit  {
       this.locStorage.watchStorage().subscribe((data:string)=>{
         this.search=localStorage.getItem("search")||""
         this.types=localStorage.getItem("typesPosts")!=null ?localStorage.getItem("typesPosts")?.split(",") : []
-        console.log(this.types)
         this.filterData()
     })
   }
