@@ -38,12 +38,13 @@ export class CommentComponent implements OnInit ,  OnDestroy {
   {
     if(this.commentValue.length>0)
     {
-      this.commentValue=""
       var data=new FormData()
       data.append("idProfile",this.cookies.get("clid"))
       data.append("idPost",this.id) 
       data.append("text",this.commentValue)
-      this.appService.sendData("/commentaire.php",data)
+      this.appService.sendData("/commentaire.php",data).then(()=>{
+        this.commentValue=""
+      })
     }
   }
 }

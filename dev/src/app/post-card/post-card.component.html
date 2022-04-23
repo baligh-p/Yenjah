@@ -24,38 +24,41 @@
     </div>
     <div class="b-w-full b-mb-2 b-text-sm b-text-right">
         <p class="b-mr-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span
-                    class="b-text-green-500">decision</span></span> , <span
+                    class="b-text-green-500" (click)="showDecisions()">decisions</span></span> , <span
                 class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span
                     class="b-text-yellow-500">Rates</span></span></p>
     </div>
-    <div class="b-flex b-border-t b-border-0 b-py-1 b-px-4 b-items-center b-justify-around">
-        <div class="b-flex b-items-center b-justify-center b-cursor-pointer md:b-w-2/6 b-w-2/5">
+    <div class="b-flex b-border-t b-border-0 b-py-1 md:b-px-4 b-items-center b-justify-around">
+        <div class="b-flex b-items-center b-justify-center b-cursor-pointer b-w-2/6">
             <div class="b-flex">
-                <div class="b-border-0 hover:b-bg-green-500 b-delay-100 b-duration-200 b-px-4 b-bg-green-300 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
+                <div [ngClass]="userData.decision=='1' ? 'b-bg-green-500 b-border-2 b-border-black' : 'b-bg-green-300 b-border-0'" (click)="makeDecision('1',userData.idPost)" class="hover:b-bg-green-500 b-delay-100 b-duration-200 b-w-12 b-flex b-items-center md:b-px-2 md:b-w-auto b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
                     <p>Take</p>
                 </div>
                 <div class="b-h-8 b-w-px b-bg-white"></div>
-                <div class="b-border-0 b-bg-red-300 hover:b-bg-red-500 b-duration-200 b-px-3 b-delay-100 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
+                <div [ngClass]="userData.decision=='0' ? 'b-bg-red-500 b-border-2 b-border-black' : 'b-bg-red-300 b-border-0'" (click)="makeDecision('0',userData.idPost)" class="hover:b-bg-red-500 b-duration-200 md:b-px-1 b-w-12 b-flex b-items-center md:b-w-auto b-delay-100 b-text-white b-py-1 flex flex-col b-justify-center b-items-center">
                     <p>Leave</p>
                 </div>
             </div>
         </div>
         <div class="b-h-10 b-w-px b-bg-stone-200"></div>
-        <div class="b-flex b-items-center b-justify-center b-space-x-2 b-cursor-pointer md:b-w-2/6 b-w-1/6 b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
+        <div class="b-flex b-items-center b-justify-center b-space-x-2 b-cursor-pointer b-w-2/6 b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
             <img src="/assets/icons/star.png" class="b-h-8 b-w-8" alt="icons">
             <p class="b-text-neutral-800 b-hidden lg:b-flex b-text-semibold">Rate</p>
         </div>
         <div class="b-h-10 b-w-px b-bg-stone-200"></div>
-        <div (click)="showComments(userData.idPost)" class="b-flex b-items-center b-justify-center md:b-w-2/6 b-w-1/6 b-space-x-2 b-cursor-pointer b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
+        <div (click)="showComments(userData.idPost)" class="b-flex b-items-center b-justify-center b-w-2/6 b-space-x-2 b-cursor-pointer b-border-0 b-p-3 hover:b-bg-stone-100 b-rounded-md">
             <img src="/assets/icons/comment.png" class="b-h-8 b-w-8" alt="icons">
             <p class="b-text-neutral-800 b-hidden lg:b-flex b-text-semibold">Comment</p>
         </div>
     </div>
     <!--decision pop up-->
-    <div *ngIf="false" class="b-fixed b-z-50 b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
+    <div *ngIf="showDecision" class="b-fixed b-z-50 b-overflow-y-scroll b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
         <div class="b-bg-white b-flex b-flex-col b-items-center b-shadow-md b-h-full b-w-full lg:b-h-4/5 lg:b-w-2/5">
             <div class="b-border-0 b-p-3 hover:b-bg-stone-200 b-self-end b-relative b-top-1 b-right-1 b-rounded-full">
-                <img src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6" alt="close decision pop up"/>
+                <img (click)="showDecisions()" src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6" alt="close decision pop up"/>
+                <div>
+
+                </div>
             </div>
         </div>
     </div>

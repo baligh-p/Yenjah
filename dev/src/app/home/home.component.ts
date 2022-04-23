@@ -1,4 +1,5 @@
 import { Component, OnInit ,OnDestroy } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../app.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private appService : AppService) { }
+  constructor(private appService : AppService, private cookies : CookieService) { }
 
   ngOnInit(): void {
     this.getPosts()
@@ -18,7 +19,9 @@ export class HomeComponent implements OnInit {
   usersData=[]
   getPosts(){
       this.loadingForPosts=true
-      this.appService.getData("/getInitPost.php?generalType=informatique").then((res)=>{
+      var idProfileIfExist=this.cookies.get("clid") ||  ""
+      console.log(idProfileIfExist)
+      this.appService.getData(`/getInitPost.php?generalType=informatique&idProfile=${idProfileIfExist}`).then((res)=>{
       this.usersData=res.data
       this.loadingForPosts=false
     })

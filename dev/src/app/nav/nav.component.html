@@ -6,10 +6,10 @@
         <div class="lg:b-hidden b-z-40 " [ngClass]="showBurger ? 'Notactive' : 'active'" id="burger" (click)="handleBurgerClick()">
             <div class="burger b-h-20 b-w-20 b-flex b-flex-col b-justify-center lg:b-hidden b-items-center"></div>
         </div>
-        <h1  class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
+        <a routerLink="/" class="b-text-3xl b-w-full lg:b-w-auto b-text-center lg:b-text-left
             b-text-indigo-600 b-self-center b-font-title b-tracking-wider b-cursor-pointer">Yenjah?<span
             class="b-text-md b-text-red-500">.tn</span>
-        </h1>
+         </a>
     </div>
     <!--part 2-->
     <div [ngClass]="isConnected ? 'lg:b-w-5/12' : 'lg:b-w-6/12'" class="b-transition-all b-delay-75 
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-w-20 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700 b-tracking-wider">
+    <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700 b-tracking-wider">
         <a routerLink="login" class="hover:b-text-blue-700 hover:b-underline 
                     b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600 b-text-blue-600">
             Login</a>
@@ -75,9 +75,10 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div  (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+    <div (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
         <img *ngIf="isConnected&&showFilterNav" [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
     </div>
+    
     <div *ngIf="isConnected" class="xl:b-w-4/12 b-hidden b-font-body lg:b-flex lg:b-w-4/12 b-w-20 b-items-center b-justify-center b-space-x-4 xl:b-space-x-8 b-tracking-wider">
         <button class="hover:b-text-red-400 b-hidden lg:b-flex hover:b-bg-white b-delay-100 b-duration-200 b-border-2 b-text-white b-bg-red-400 b-border-red-400 b-py-1.5 b-px-4 b-rounded-sm"><a routerLink="create-Post" >Create Post</a></button>
         <img src="/assets/icons/notification.png" class="b-w-8 b-h-8 lg:b-flex b-cursor-pointer b-box-content hover:b-rounded-full hover:b-border-0 hover:b-bg-stone-200 b-p-3" alt="notification"/>

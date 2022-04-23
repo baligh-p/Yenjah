@@ -11,6 +11,13 @@ if (isset($_GET["generalType"])) {
     p.idTypeGeneral=g.idTypeGeneral AND p.idTypeSpecifique=s.idTypeSpecifique AND p.idTypeGeneral=? order by p.dateCreate
     desc");
     $req->execute(array($idTypeGeneral));
-    $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    $result = array();
+    while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        $stmt = $connect->query("SELECT decision from decision where idProfile='$_GET[idProfile]' and idPost='$data[idPost]'");
+        $decision = $stmt->fetchColumn();
+        if ($stmt->rowCount()) $data["decision"] = $decision;
+        else $data["decision"] = "";
+        $result[] = $data;
+    }
     print_r(json_encode($result));
 }
