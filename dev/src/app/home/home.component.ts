@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   getPosts(){
       this.loadingForPosts=true
       var idProfileIfExist=this.cookies.get("clid") ||  ""
-      console.log(idProfileIfExist)
       this.appService.getData(`/getInitPost.php?generalType=informatique&idProfile=${idProfileIfExist}`).then((res)=>{
       this.usersData=res.data
       this.loadingForPosts=false

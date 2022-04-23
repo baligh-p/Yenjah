@@ -24,7 +24,7 @@
     </div>
     <div class="b-w-full b-mb-2 b-text-sm b-text-right">
         <p class="b-mr-3"><span class="b-font-medium b-underline b-decoration-neutral-600 b-cursor-pointer">10 <span
-                    class="b-text-green-500" (click)="showDecisions()">decisions</span></span> , <span
+                    class="b-text-green-500" (click)="showDecisions(userData.idPost)">decisions</span></span> , <span
                 class="b-font-medium b-cursor-pointer b-underline b-decoration-neutral-600">10 <span
                     class="b-text-yellow-500">Rates</span></span></p>
     </div>
@@ -55,20 +55,20 @@
     <div *ngIf="showDecision" class="b-fixed b-font-body b-z-50 b-overflow-y-scroll b-top-0 b-left-0 b-h-screen b-w-full b-flex b-bg-neutral-50/70 b-items-center b-justify-center">
         <div class="b-bg-white b-flex b-flex-col b-items-center b-shadow-md b-h-full b-w-full lg:b-h-4/5 lg:b-w-2/5">
             <div class="b-flex b-border-b b-border-stone-200 b-items-center b-mb-10 b-w-full b-space-x-5">
-                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">All</button>
-                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Take</button>
-                <button class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Leave</button>
+                <button (click)="check('all')" [ngClass]="DecisionCheck=='all' ? 'b-border-b-2 b-border-b-blue-500' : '' " class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">All</button>
+                <button (click)="check('take')" [ngClass]="DecisionCheck=='take' ? 'b-border-b-2 b-border-b-green-500' : '' " class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Take</button>
+                <button (click)="check('leave')" [ngClass]="DecisionCheck=='leave' ? 'b-border-b-2 b-border-b-red-500' : '' " class="b-px-4 b-h-14 hover:b-bg-stone-100 b-text-neutral-500 b-font-bold">Leave</button>
                 <div class="b-flex-1 b-flex b-justify-end ">
                     <div class="b-border-0 b-p-3 b-mr-2 hover:b-bg-stone-200 b-rounded-full">
-                        <img (click)="showDecisions()" src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6"
+                        <img (click)="showDecisions(userData.idPost)" src="/assets/icons/x.png" class="b-cursor-pointer b-h-6 b-w-6"
                             alt="close decision pop up" />
                     </div>
                 </div>
             </div>
-            <div *ngFor="let decision of decisions" class="b-self-start b-mb-4 b-flex b-items-center b-w-full">
+            <div *ngFor="let decision of customDecisions" class="b-self-start b-mb-4 b-flex b-items-center b-w-full">
                 <img [src]="'/assets/'+decision.photo" class="b-ml-4 b-h-14 b-w-14 b-mr-2 b-rounded-full" alt="photo de profile">
                 <h2 class="b-font-extrabold">{{decision.username}}</h2>
-                <p [ngClass]="decision.decision==='take' ? 'b-text-green-400' : 'b-text-red-400'" class="b-ml-auto b-mr-5">{{decision.decision}}</p>
+                <p [ngClass]="decision.decision==='1' ? 'b-text-green-400' : 'b-text-red-400'" class="b-ml-auto b-mr-5">{{decision.decision==="0" ? "leave" : "take"}}</p>
             </div>
         </div>
     </div>

@@ -42,23 +42,16 @@ if (isset($_POST["decision"])) {
     } catch (Exception $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-}elseif (isset($_GET["idPost"])) {
+} elseif (isset($_GET["idPost"])) {
     $idPost = $_GET["idPost"];
     try {
         $conn = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt1 = $conn->query("SELECT profile.username, profile.photo FROM profile, decision WHERE decision.idProfile=profile.idProfile AND decision.idPost=? AND decision=1 ");
+        $stmt1 = $conn->prepare("SELECT profile.username, decision.decision , profile.photo FROM profile, decision WHERE decision.idProfile=profile.idProfile AND decision.idPost=?");
         $stmt1->execute(array(
             $idPost
         ));
-        $stmt2 = $conn->query("SELECT profile.username, profile.photo FROM profile, decision WHERE decision.idProfile=profile.idProfile  AND decision.idPost=? AND decision=0 ");
-        $stmt2->execute(array(
-            $idPost
-        ));
-        $take_list = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-        $leave_list = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-        $data = array();
-        array_push($data,$take_list,$leave_list);
+        $data = $stmt1->fetchAll(PDO::FETCH_ASSOC);
         print_r(json_encode($data));
     } catch (Exception $e) {
         echo "Connection failed: " . $e->getMessage();

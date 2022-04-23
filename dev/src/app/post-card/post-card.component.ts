@@ -33,21 +33,37 @@ export class PostCardComponent implements OnInit {
       })
     }
   }
-  decisions =[
+  decisions : any
+  customDecisions: any
+  DecisionCheck = "all"
+  showDecision=false
+  check(check : string){
+    this.DecisionCheck=check
+    if(check==="all")
     {
-      username:"baligh", 
-      photo:"icons/darius.jpg",
-      decision:"take"
-    },
-    {
-      username:"baligh", 
-      photo:"icons/darius.jpg",
-      decision:"leave"
+      this.customDecisions=this.decisions
     }
-  ]
-  showDecision=true
-  showDecisions(){
+    else if(check==="take")
+    {
+      this.customDecisions=this.decisions.filter((res:any)=>res.decision==="1")
+    }
+    else
+    {
+      this.customDecisions=this.decisions.filter((res:any)=>res.decision==="0")
+    }
+  }
+  getDecisions(id : string){
+    this.appService.getData(`/decision.php?idPost=${id}`).then((res)=>{
+      this.decisions=res.data
+      this.customDecisions=res.data
+    })
+  }
+  showDecisions(id : string){
     this.showDecision=!this.showDecision
+    if(this.showDecision)
+    {
+      this.getDecisions(id)
+    }
   }
   makeDecision(decision : string,idPost : string){
     this.usersData.forEach((element : any) => {
