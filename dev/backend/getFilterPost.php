@@ -16,7 +16,7 @@ include_once "./infoServer.php";
                 $tab[$i]
             ));
             $result = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-            if (isset($_GET["clid"])) {
+            if (isset($_GET["idProfile"])) {
                 if ($stmt1->rowCount()){
                     foreach ($result as $key => $value){
                         $stmt2=$conn->prepare("SELECT decision from decision where idProfile=? and idPost=?");
