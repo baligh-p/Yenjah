@@ -14,7 +14,6 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories()
-    alert(localStorage.getItem("typesPosts"))
   }
   categories  = {}
   keys = Object.keys(this.categories)
@@ -30,7 +29,14 @@ export class CategorieComponent implements OnInit {
     this.locStorage.setItem("typesPosts",this.types)
   }
   verifyCheck(sous : string){
-    if(localStorage.getItem("typesPosts")?.indexOf(sous)!=-1) return true 
-    else return false
+    if(localStorage.getItem("typesPosts")!=null)
+    {
+      if(localStorage.getItem("typesPosts")?.indexOf(sous)!=-1) return true 
+      else return false
+    }
+    else 
+    {
+      return false
+    }
   }
 }
